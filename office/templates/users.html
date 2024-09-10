@@ -1,0 +1,45 @@
+{% extends 'admintopbar.html' %}
+
+{% load static %}
+
+{% block body %}
+
+<link rel="stylesheet" href="{% static 'users.css' %}">
+
+<div style="margin-top: 3%;">
+    <p id="userlisthead">Users list</p>
+
+    <table border="2px" id="userstable">
+        <tr id="tableheader">
+            <th id="propicth">Profile picture</th>
+            <th class="headings">First Name</th>
+            <th class="headings">Last Name</th>
+            <th id="usernameth" class="headings">Username</th>
+            <th class="headings">Email</th>
+            <th class="headings">Mobile Number</th>
+            <th class="headings">Gender</th>
+            <th class="headings">Date of birth</th>
+            <th class="headings">Date joined</th>
+            <th class="headings"></th>
+            <th class="headings"></th>
+        </tr>
+        {%for i in users%}
+        <tr id="tablecontent">
+            <td><img src="{{i.profile_pic.url}}" id="propic" alt=""></td>
+            <td>{{i.first_name}}</td>
+            <td>{{i.last_name}}</td>
+            <td id="usernametd">{{i.username}}</td>
+            <td>{{i.email}}</td>
+            <td>{{i.mobile_no}}</td>
+            <td>{{i.gender}}</td>
+            <td>{{i.date_of_birth}}</td>
+            <td>{{i.date_joined}}</td>
+            <td><a href="/posts/{{i.id}}"><button id="postsbtn">View profile</button></a></td>
+            <td><a href="/deleteuser/{{i.id}}"><button id="deletebtn">Delete account</button></a></td>
+        </tr>
+        {%endfor%}
+    </table>
+
+</div>
+
+{% endblock %}

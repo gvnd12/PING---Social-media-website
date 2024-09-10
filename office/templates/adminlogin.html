@@ -1,0 +1,34 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="{% static 'adminlogin.css' %}">
+</head>
+<body>
+    <span id="ping">PING</span>
+    <a href="{% url 'login' %}"><img id="userlogo" src="{% static 'userlogo.png' %}" alt=""></a>
+    <form id="adminloginform" action="" method="post">
+        <img id="adminlogo" src="{% static 'adminlogo.png' %}" alt="">
+        <span id="loginheader">Admin Login</span>
+        {%csrf_token%}
+
+        <span id="error">{{error}}</span><br>
+
+        <div id="usernamediv">
+            <input type="text" name="username" id="usernameinput" required>
+            <label id="usernamelabel" for="usernameinput" >Username</label>
+        </div>
+
+        <div id="passworddiv">
+            <input type="password" name="password" id="passwordinput" required>
+            <label id="passwordlabel" for="passwordinput">Password</label>
+        </div>
+
+        <input id="loginsubmit" type="submit" value="Login"><br>
+
+    </form>
+</body>
+</html>

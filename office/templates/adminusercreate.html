@@ -1,0 +1,77 @@
+{% extends 'admintopbar.html' %}
+
+{% load static %}
+
+{% block body %}
+
+<link rel="stylesheet" href="{% static 'adminusercreate.css' %}">
+
+<div>
+
+    <form id="registerform" action="" method="post" enctype="multipart/form-data">
+        {%csrf_token%}
+        <p id="create">Create a user</p>
+
+        <div class="div" id="fnamediv">
+            <input type="text" name="first_name" required id="fname">
+            <label for="fname">First name</label>
+        </div>
+
+        <div class="div" id="lnamediv">
+            <input type="text" name="last_name" id="lname" required>
+            <label for="lname">Last name</label>
+        </div>
+
+        <div class="div" id="usernamediv">
+            <input type="text" name="username" id="username" required>
+            <label for="username">Username</label>
+        </div>
+
+        <div class="div" id="emaildiv">
+            <input type="email" name="email" id="email" required>
+            <label for="email">Email</label>
+        </div>
+
+        <div class="div" id="mbnodiv">
+            <input type="number" name="mobile_no" id="mbno" required>
+            <label for="mbno">Mobile number</label>
+        </div>
+        
+        <div class="div" id="passdiv">
+            <input type="password" name="password" id="password" required>
+            <label for="password">Password</label>
+        </div>
+
+        <div class="div" id="cpassdiv">
+            <input type="password" name="confirm_password" id="cpass" required>
+            <label for="cpass">Confirm password</label>
+        </div>
+        
+        {%if error%}
+        <span id="error">{{error}}</span>
+        {%endif%}
+
+        <div class="div" id="dobdiv">
+            <input type="date" name="dob" id="dob" required>
+            <label for="dob">Date of birth</label>
+        </div>
+        
+        <div class="div" id="genderdiv">
+            <select name="gender" id="gender" required>
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+            </select>
+            <label for="gender">Gender</label>
+        </div>
+        
+        <div class="div" id="picdiv">
+            <input type="file" name="pic" placeholder='pic' id="pic">
+            <label for="pic">Upload a profile picture</label>
+        </div>
+        
+        <input type="submit" id="regsubmit" value="Create">
+
+    </form>
+
+</div>
+{% endblock %}

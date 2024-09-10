@@ -1,0 +1,248 @@
+#registerform
+{
+    margin-left: 25%;
+    width: 50%;
+    height: 80vh;
+    background: white;
+}
+
+#create
+{
+    color: rgb(0, 0, 35);
+    font-size: 200%;
+    font-family: 'Bold';
+    width: 15%;
+    position: absolute;
+    left: 42.5%;
+    top: 20%;
+}
+
+.div
+{
+    height: 8%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+input
+{
+    height: 100%;
+    z-index: 1;
+    background: rgba(255, 255, 255, 0);
+    border: 1px solid rgb(0,0,62);
+    border-radius: 7px;
+    padding-left: 12px;
+    padding-right: 12px;
+    width: 25%;
+    font-size: 100%;
+}
+
+label
+{
+    position: absolute;
+    left: 36.5%;
+    opacity: 60%;
+    padding-left: 5px;
+    padding-right: 5px;
+    background-color: white;
+    transition: .1s;
+    user-select: none;
+}
+
+input[type=file]
+{
+    display: none;
+}
+
+input[type=file] + label
+{
+    position: relative;
+    left: 0%;
+    border: 1px solid rgba(0, 0, 62);
+    height: 100%;
+    width: 28%;
+    border-radius: 7px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+input[type=file]:valid +label
+{
+    left: 0%;
+    top: 0%;
+    font-size: 100%;
+    opacity: 100%;
+    border: 3px solid rgb(0,0,62);
+}
+
+input[type=date]
+{
+    width: 15%;
+    position: relative;
+    left: 5%;
+    border: 1px solid rgb(0,0,62);
+}
+
+input[type=date] + label
+{
+    text-align: center;
+    position: absolute;
+    left: 36.3%;
+    width: 8%;
+    height: 100%;
+    border-radius: 7px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+input[type=date]:focus + label
+{
+    top: 0%;
+    left: 36.3%;
+    font-size: 100%;
+    opacity: 60%;
+}
+
+input[type=date]:valid + label
+{
+    top: 0%;
+    left: 36.3%;
+    font-size: 100%;
+    opacity: 60%;
+}
+
+input:focus + label
+{
+    top: -20%;
+    left: 37.2%;
+    font-size: 80%;
+    z-index: 2;
+    opacity: 100%;
+    font-weight: 500;
+}
+
+input:valid + label
+{
+    top: -20%;
+    left: 37.2%;
+    font-size: 80%;
+    z-index: 2;
+    opacity: 100%;
+}
+
+select
+{
+    width: 18.4%;
+    height: 100%;
+    text-align: center;
+    position: relative;
+    left: 5%;
+    border-radius: 7px;
+    border: 1px solid rgb(0,0,62);
+    background: rgba(255, 255, 255, 0);
+}
+
+#error
+{
+    position: absolute;
+    left: 43%;
+    top: 32%;
+    color: red;
+    background: white;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: .1px .1px 5px rgba(0, 0, 0, 0.306);
+}
+
+#fnamediv
+{
+    position: relative;
+    top: 28%;
+    right: 20%;
+}
+
+#lnamediv
+{
+    position: relative;
+    top: 30%;
+    right: 20%;
+}
+
+#usernamediv
+{
+    position: relative;
+    top: 32%;
+    right: 20%;
+}
+
+#emaildiv
+{
+    position: relative;
+    top: 34%;
+    right: 20%;
+}
+
+#mbnodiv
+{
+    position: relative;
+    top: 36%;
+    right: 20%;
+}
+
+#passdiv
+{
+    position: relative;
+    bottom: 12%;
+    left: 20%;
+}
+
+#cpassdiv
+{
+    position: relative;
+    bottom: 10%;
+    left: 20%;
+}
+
+#dobdiv
+{
+    position: relative;
+    bottom: 8%;
+    left: 20%;
+}
+
+#genderdiv
+{
+    position: relative;
+    bottom: 6%;
+    left: 20%;
+}
+
+#picdiv
+{
+    position: relative;
+    bottom: 4%;
+    left: 20%;
+}
+
+#regsubmit
+{
+    width: 15%;
+    height: 6%;
+    position: absolute;
+    top: 80%;
+    left: 42.5%;
+    background: rgb(0,0,62);
+    color: white;
+    font-size: 100%;
+    cursor: pointer;
+}
+
+p
+{
+    position: relative;
+    top: 18%;
+    text-align: center;
+}

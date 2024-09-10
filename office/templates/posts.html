@@ -1,0 +1,38 @@
+{% extends 'admintopbar.html' %}
+
+{% load static %}
+
+{% block body %}
+
+<link rel="stylesheet" href="{% static 'posts.css' %}">
+
+<div>
+    <div id="userdetails">
+        <img id="userpropic" src="{{user.profile_pic.url}}" alt="">
+        <span id="username">{{user.username}}</span>
+        <a id="userdelete" href="/deleteuser/{{user.id}}"><button id="userdeletebtn">Delete account</button></a>
+        <a id="follower" href="/adminfollowers/{{user.id}}"><button class="follow" id="followerbtn">Followers</button></a>
+        <a id="following" href="/adminfollowing/{{user.id}}"><button class="follow" id="followingbtn">Following</button></a>
+    </div>
+
+    {%if posts%}
+        <table id="userstable" border="1px">
+            <tr>
+                <th>Post</th>
+                <th>Caption</th>
+                <th></th>
+            </tr>
+            {%for p in posts%}
+                <tr>
+                    <td id="imagetd"><img src="{{p.Post_image.url}}" alt="" id="postimage"></td>
+                    <td id="captiontd">{{p.Post_description}}</td>
+                    <td><a href="/deletepost/{{p.id}}"><button id="postdlt">Delete post</button></a></td>
+                </tr>
+                {%endfor%}
+        </table>
+    {%else%}
+        <p id="noposts">No posts</p>
+    {%endif%}
+
+</div>
+{% endblock %}

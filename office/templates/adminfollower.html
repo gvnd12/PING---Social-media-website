@@ -1,0 +1,43 @@
+{% extends 'admintopbar.html' %}
+
+{% load static %}
+
+{% block body %}
+
+<link rel="stylesheet" href="{% static 'adminfollower.css' %}">
+
+<span id="followingheader">Followers</span>
+{% if followers%}
+<table border="2px" id="userstable">
+    <tr id="tableheader">
+        <th>Profile picture</th>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>Username</th>
+        <th>Email</th>
+        <th id="mobno">Mobile Number</th>
+        <th>Gender</th>
+        <th>Date of birth</th>
+        <th id="datejoined">Date joined</th>
+        <th></th>
+    </tr>
+    {%for i in followers%}
+    <tr id="tablecontent">
+        <td id="propictd"><img src="{{i.profile_pic.url}}" id="propic" alt=""></td>
+        <td>{{i.first_name}}</td>
+        <td>{{i.last_name}}</td>
+        <td>{{i.username}}</td>
+        <td>{{i.email}}</td>
+        <td>{{i.mobile_no}}</td>
+        <td>{{i.gender}}</td>
+        <td>{{i.date_of_birth}}</td>
+        <td>{{i.date_joined}}</td>
+        <td><a href="/posts/{{i.id}}"><button id="postsbtn">View profile</button></a></td>
+    </tr>
+    {%endfor%}
+</table>
+{%else%}
+<p id="nofollower">No followers</p>
+{%endif%}
+
+{% endblock %}

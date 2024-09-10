@@ -1,0 +1,166 @@
+@font-face {
+    font-family: 'Bold';
+    src: url(fonts/BinomaTrialBold-1jPDj.ttf);
+}
+
+@font-face {
+    font-family: 'bodyreg';
+    src: url(fonts/RedHatDisplay-VariableFont_wght.ttf);
+}
+
+*
+{
+    font-family: 'bodyreg';
+}
+
+a
+{
+    text-decoration: none;
+}
+
+body
+{
+    margin: 0;
+}
+
+#link
+{
+    font-size: 200%;
+}
+
+#topbar
+{
+    width: 100%;
+    position: absolute;
+    display: flex;
+    align-items: center;
+    height: 100px;
+    background: linear-gradient(rgb(0, 0, 40), rgb(0, 0, 0));
+    z-index: 1000;
+    font-weight: 500;
+}
+
+#ping
+{
+    font-size: 280%;
+    font-weight: 900;
+    position: absolute;
+    left: 3%;
+    color: white;
+}
+
+#pinglink
+{
+    font-family: 'Bold';
+    color: white;
+}
+
+#topbarsection
+{
+    width: 60%;
+    position: relative;
+    left: 20%;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+#viewuser
+{
+    font-size: 90%;
+    color: white;
+    padding: 10px 15px 10px 15px;
+    border-radius: 10px;
+    border: 1px solid white;
+    transition: .1s ease-in-out;
+}
+
+#createuser
+{
+    font-size: 90%;
+    color: white;
+    padding: 10px 15px 10px 15px;
+    border-radius: 10px;
+    border: 1px solid white;
+    transition: .1s ease-in-out;
+}
+
+#createpost
+{
+    font-size: 90%;
+    color: white;
+    padding: 10px 15px 10px 15px;
+    border-radius: 10px;
+    border: 1px solid white;
+    transition: .1s ease-in-out;
+}
+
+#viewuser:hover, #createuser:hover, #createpost:hover
+{
+    background: rgb(255, 255, 255);
+    color: black;
+}
+
+#logout
+{
+    font-size: 90%;
+    position: absolute;
+    right: 2%;
+    top: 31%;
+    width: 8.25%;
+    height: 38.5%;
+    border: 1px solid white;
+    background: none;
+    color: rgb(255, 255, 255);
+    border-radius: 10px;
+    transition: .2s ease-in-out;
+    font-weight: 500;
+}
+#logout:hover
+{
+    background: rgb(192, 0, 0);
+    color: black;
+    border: none;
+    cursor: pointer;
+}
+
+#confirmation
+{
+    padding: 10px;
+    border-radius: 10px;
+    background: linear-gradient(rgb(0, 0, 0), rgb(0, 0, 70));
+    width: 10%;
+    position: relative;
+    left: 88%;
+    top: 0px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    transition: .2s ease-in-out;
+    font-weight: 500;
+    font-size: 90%;
+}
+
+.confirmlink
+{
+    color: white;
+    padding: 5px 50px 5px 50px;
+    border: 1px solid white;
+    border-radius: 5px;
+    transition: .2s ease-in-out;
+}
+
+.confirmlink:hover
+{
+    background: white;
+    color: black;
+    cursor: pointer;
+}
+
+#confrimbtn:hover
+{
+    background: rgb(192, 0, 0);
+    border: 1px solid rgb(192, 0, 0);
+}

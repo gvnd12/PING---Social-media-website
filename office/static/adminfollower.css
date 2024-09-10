@@ -1,0 +1,89 @@
+#followingheader
+{
+    font-family: 'Bold';
+    font-size: 180%;
+    color: rgb(0, 0, 35);
+    position: absolute;
+    left: 10%;
+    top: 18%;
+}
+
+#userstable
+{
+    margin-left: 10%;
+    position: absolute;
+    top: 25%;
+    width: 80%;
+    border-collapse: collapse;
+    text-align: center;
+    border: 3px solid rgb(255, 0, 0);
+}
+
+th
+{
+    height: 40px;
+    background: rgb(0, 0, 35);
+    color: white;
+    font-weight: 500;
+    font-size: 110%;
+}
+
+td
+{
+    padding: 10px;
+    word-break: break-all;
+}
+
+#propictd
+{
+    width: 200px;
+}
+
+#propic
+{
+    width: 100%;
+}
+
+#mobno
+{
+    width: 8%;
+}
+
+#datejoined
+{
+    width: 7%;
+}
+
+button
+{
+    width: 90%;
+    height: 100%;
+    border: 1px solid rgb(255, 0, 0);
+    border-radius: 10px;
+    color: white;
+}
+
+button:hover
+{
+    cursor: pointer;
+}
+
+#postsbtn
+{
+    background: linear-gradient(rgb(0, 0, 35), rgb(0, 0, 100));
+    padding: 10px 15px 10px 15px;
+}
+
+#deletebtn
+{
+    background: linear-gradient(rgb(128, 0, 0), rgb(181, 0, 0));
+    padding: 10px 15px 10px 15px;
+}
+
+#nofollower
+{
+    font-size: 120%;
+    position: absolute;
+    top: 25%;
+    left: 10%;
+}
