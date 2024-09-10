@@ -1,0 +1,387 @@
+*
+{
+    font-family: 'bodyreg';
+    font-weight: 500;
+}
+
+a
+{
+    text-decoration: none;
+    color: white;
+}
+
+#profile
+{
+    height: 100vh;
+    width: 63.9%;
+    position: relative;
+    left: 18.05%;
+    border-right: 1px solid rgb(40, 40, 40);
+    background: rgb(0, 0, 0);
+    color: white;
+    margin-top: -730px;
+    overflow-y: scroll;
+}
+#profile::-webkit-scrollbar
+{
+    display: none;
+}
+
+#propic
+{
+    width: 200px;
+    height: 200px;
+    position: relative;
+    left: 100px;
+    top: 40px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 3px solid rgb(255, 255, 255);
+}
+
+#username
+{
+    width: 50%;
+    font-size: 180%;
+    position: relative;
+    bottom: 150px;
+    left: 45%;
+    overflow: hidden;
+}
+
+#name
+{
+    width: 50%;
+    font-size: 120%;
+    position: relative;
+    bottom: 180px;
+    left: 45%;
+    color: rgba(255, 255, 255, 0.557);
+    overflow: hidden;
+}
+
+#followers
+{
+    width: 15%;
+    height: 40px;
+    position: relative;
+    bottom: 170px;
+    left: 45%;
+    font-size: 110%;
+    border-radius: 10px;
+    border: 1px solid rgb(40, 40, 40);
+    transition: .1s ease-in-out;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#following
+{
+    width: 15%;
+    height: 40px;
+    position: relative;
+    bottom: 212px;
+    left: 63%;
+    font-size: 110%;
+    border-radius: 10px;
+    border: 1px solid rgb(40, 40, 40);
+    transition: .1s ease-in-out;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#followers:hover, #following:hover
+{
+    background: rgb(255, 255, 255);
+    color: rgb(0, 0, 0);
+    border: 1px solid white;
+}
+
+#line
+{
+    width: 100%;
+    height: .1px;
+    background-color: rgb(40, 40, 40);
+    z-index: 10;
+    position: relative;
+    bottom: 150px;
+}
+
+#allposts
+{
+    position: relative;
+    bottom: 150px;
+    margin-top: 5%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: -180px;
+}
+
+#post
+{
+    width: 58%;
+    background: rgba(20, 20, 20);
+    padding: 5px 5px 15px 5px;
+    border-radius: 30px;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+}
+
+.cmtview
+{
+    width: 20px;
+    height: 20px;
+    background: none;
+    transition: .2s ease-in-out;
+    text-decoration: none;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 10px;
+    margin-top: 5px;
+}
+
+#cmticon
+{
+    width: 100%;
+}
+
+#postpic
+{
+    width: 100%;
+    max-height: 350px;
+    object-fit: fill;
+}
+
+.pdesc
+{
+    line-height: 30px;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+#postlike
+{
+    margin-top: 10px;
+}
+
+#postcaption
+{
+    margin-top: -20px;
+    word-break: break-all;
+    font-weight: 100;
+    font-size: 90%;
+}
+
+#postdate
+{
+    margin-top: -20px;
+    font-weight: 100;
+}
+
+#psep
+{
+    margin-top: -10px;
+    width: 100%;
+    height: .1px;
+    background: rgb(40, 40, 40);
+}
+
+#cmtviewbox
+{
+    max-height: 300px;
+    overflow-y: auto;
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-top: -10px;
+    background: rgb(40, 40, 40);
+    padding: 10px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+#cmtviewbox::-webkit-scrollbar
+{
+    width: 5px;
+    background: rgb(28, 28, 28);
+    border-radius: 10px;
+}
+#cmtviewbox::-webkit-scrollbar-thumb
+{
+    border-radius: 10px;
+    background: rgb(60, 60, 60);
+}
+
+#commentsheader
+{
+    margin-top: 5px;
+    margin-left: 10px;
+    margin-bottom: 0;
+    font-size: 110%;
+    font-family: 'Bold';
+}
+
+.cmtline
+{
+    margin-left: 20px;
+}
+
+#cmtcontent
+{
+    width: 95%;
+    overflow-wrap: break-word;
+    margin: 0;
+    font-size: 90%;
+    margin-left: 10px;
+    margin-top: 0px;
+    color: rgb(170, 170, 170);
+}
+
+#cmtdate
+{
+    font-size: 70%;
+    font-weight: 500;
+    margin-left: 10px;
+    color: rgb(100, 100, 100);
+}
+
+#cmtform
+{
+    width: 60%;
+    height: 40px;
+    border: 1px solid rgb(40, 40, 40);
+    border-radius: 30px;
+    margin-top: -10px;
+    margin-left: 10px;
+}
+
+.cmtinput
+{
+    height: 98%;
+    width: 62%;
+    position: relative;
+    bottom: 1px;
+    border: none;
+    padding: none;
+    border-radius: 30px;
+    background: none;
+    padding-left: 5%;
+    padding-right: 5%;
+    color: white;
+    font-size: 80%;
+    font-weight: 100;
+}
+.cmtinput:focus
+{
+    outline: none;
+}
+
+#cmtbtn
+{
+    height: 100%;
+    width: 25%;
+    border-radius: 30px;
+    border: none;
+    cursor: pointer;
+    background: none;
+    text-align: center;
+    color: rgb(190, 190, 190);
+}
+
+.postmenu
+{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background: none;
+    cursor: pointer;
+    transition: .1s ease-in-out;
+    position: relative;
+    left: 26%;
+    bottom: 51px;
+}
+.postmenu:hover
+{
+    background: rgb(40, 40, 40);
+}
+
+.postmenuoption
+{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    padding-left: 1%;
+    padding-right: 1%;
+    border-radius: 5px;
+    background: rgb(40, 40, 40);
+    position: relative;
+    bottom: 140px;
+    left: 20%;
+}
+
+#deletepost, #captionedit
+{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10%;
+    border-radius: 5px;
+}
+#deletepost:hover, #captionedit:hover
+{
+    background: white;
+    color: black;
+}
+
+#newpostdiv
+{
+    height: 40vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    bottom: 100px;
+}
+
+#nopost
+{
+    font-size: 110%;
+    color: rgb(191, 191, 191);
+    margin-top: 10px;
+}
+
+.newpost
+{
+    color: rgb(96, 96, 96);
+    font-size: 150%;
+    width: 60px;
+    height: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    border: 1px solid rgb(96, 96, 96);
+    transition: .1s ease-in-out;
+}
+
+.newpost:hover
+{
+    background-color: rgb(25, 25, 25);
+    cursor: pointer;
+    color: white;
+    border-color: white;
+}

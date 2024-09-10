@@ -1,0 +1,302 @@
+*
+{
+    font-family: 'bodyreg';
+}
+
+@media only screen and (min-width: 600px) {
+
+    a
+    {
+        color: white;
+        text-decoration: none;
+    }
+
+    #feed
+    {
+        height: 100vh;
+        width: 63.9%;
+        position: relative;
+        left: 18.05%;
+        border-right: 1px solid rgb(40, 40, 40);
+        background: rgb(0, 0, 0);
+        color: white;
+        margin-top: -730px;
+        overflow-y: scroll;
+    }
+    #feed::-webkit-scrollbar
+    {
+        display: none;
+    }
+
+    #allposts
+    {
+        padding-top: 70px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    #post
+    {
+        width: 58%;
+        background: rgba(20, 20, 20);
+        padding: 0px 5px 15px 5px;
+        border-radius: 30px;
+    }
+
+    #postuser
+    {
+        margin-left: 10px;
+        font-weight: 500;
+    }
+
+    #postuserlink
+    {
+        display: flex;
+        align-items: center;
+        justify-content: start;
+        text-decoration: none;
+        color: white;
+        max-width: 40%;
+        overflow: hidden;
+    }
+
+    #postuserpropic
+    {
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        border: 1px solid rgb(70, 70, 70);
+        object-fit: cover;
+        margin-right: 8px;
+        image-rendering: optimizeSpeed;
+    }
+
+    #likeform
+    {
+        width: 20%;
+    }
+
+    .like
+    {
+        width: 26px;
+        height: 26px;
+        transition: .2s ease-in-out;
+        background: none;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-left: 10px;
+    }
+
+    .likeicon
+    {
+        width: 100%;
+    }
+
+    #cmtview
+    {
+        width: 20px;
+        height: 20px;
+        background: none;
+        transition: .2s ease-in-out;
+        text-decoration: none;
+        margin-left: 15px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: relative;
+        left: 5%;
+        bottom: 19px;
+    }
+
+    #cmticon
+    {
+        width: 100%;
+    }
+
+    #postpic
+    {
+        width: 100%;
+        max-height: 350px;
+        object-fit: fill;
+    }
+
+    #postlikecount
+    {
+        margin-left: 10px;
+        margin-right: 10px;
+        margin-top: -15px;
+    }
+
+    #postusername
+    {
+        text-decoration: none;
+        color: white;
+    }
+
+    #postdesc
+    {
+        margin-top: -20px;
+        margin-left: 10px;
+        margin-right: 10px;
+        word-break: break-all;
+        font-weight: 100;
+        font-size: 90%;
+    }
+
+    #postedon
+    {
+        margin-top: -20px;
+        margin-left: 10px;
+        margin-right: 10px;
+        font-weight: 500;
+        font-size: 100%;
+    }
+
+    .pdesc
+    {
+        line-height: 30px;
+    }
+
+    #psep
+    {
+        width: 100%;
+        height: .1px;
+        background: rgb(40, 40, 40);
+    }
+
+
+    #cmtviewbox
+    {
+        max-height: 300px;
+        overflow-y: auto;
+        margin-left: 10px;
+        margin-right: 10px;
+        margin-top: -10px;
+        background: rgb(40, 40, 40);
+        padding: 10px;
+        border-radius: 10px;
+        margin-bottom: 20px;
+    }
+    #cmtviewbox::-webkit-scrollbar
+    {
+        width: 5px;
+        background: rgb(28, 28, 28);
+        border-radius: 10px;
+    }
+    #cmtviewbox::-webkit-scrollbar-thumb
+    {
+        border-radius: 10px;
+        background: rgb(60, 60, 60);
+    }
+
+    #commentsheader
+    {
+        margin-top: 5px;
+        margin-left: 10px;
+        margin-bottom: 0;
+        font-size: 110%;
+        font-family: 'Bold';
+    }
+
+    .cmtline
+    {
+        margin-left: 20px;
+    }
+
+    #cmtcontent
+    {
+        width: 95%;
+        overflow-wrap: break-word;
+        margin: 0;
+        font-size: 90%;
+        margin-left: 10px;
+        margin-top: 0px;
+        color: rgb(170, 170, 170);
+    }
+
+    #cmtdate
+    {
+        font-size: 70%;
+        font-weight: 500;
+        color: rgb(100, 100, 100);
+        margin-left: 10px;
+    }
+
+    #cmtform
+    {
+        width: 60%;
+        height: 40px;
+        border: 1px solid rgb(40, 40, 40);
+        border-radius: 30px;
+        margin-top: -10px;
+        margin-left: 10px;
+    }
+
+    .cmtinput
+    {
+        height: 95%;
+        width: 62%;
+        border: none;
+        padding: none;
+        border-radius: 30px;
+        background: none;
+        padding-left: 5%;
+        padding-right: 5%;
+        color: white;
+        font-size: 80%;
+        font-weight: 100;
+    }
+
+    .cmtinput:focus
+    {
+        outline: none;
+    }
+
+    #cmtbtn
+    {
+        height: 100%;
+        width: 25%;
+        border-radius: 30px;
+        border: none;
+        cursor: pointer;
+        background: none;
+        text-align: center;
+        color: rgb(190, 190, 190);
+    }
+
+    #nonewpostinfeed
+    {
+        color: rgb(255, 255, 255);
+        background: none;
+        width: 100%;
+        position: absolute;
+        top: 48%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    #pingbox
+    {
+        background: black;
+        z-index: 10000;
+        width: 17.95%;
+        height: 100vh;
+        position: fixed;
+        right: 0%;
+        top: 0;
+    }
+
+}
+
+@media only screen and (max-width: 600px) {
+
+    #feed
+    {
+        display: none;
+    }
+}

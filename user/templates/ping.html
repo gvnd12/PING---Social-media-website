@@ -1,0 +1,136 @@
+{% load static %}
+
+<link rel="stylesheet" href="{% static 'ping.css' %}">
+
+<div id="pingbox">
+    <form id="pingform" method="post" action="">
+        <input type="hidden" id="csrf_token" value="{{ csrf_token }}">
+        <input type="text" id="pinginput" placeholder="Ping...">
+        <button type="submit" id="pingsubmit">
+            <svg style="rotate: 90deg;" width="20" height="20" fill="white" class="bi bi-activity" viewBox="0 0 16 16">
+                <path fill-rule="evenodd" d="M6 2a.5.5 0 0 1 .47.33L10 12.036l1.53-4.208A.5.5 0 0 1 12 7.5h3.5a.5.5 0 0 1 0 1h-3.15l-1.88 5.17a.5.5 0 0 1-.94 0L6 3.964 4.47 8.171A.5.5 0 0 1 4 8.5H.5a.5.5 0 0 1 0-1h3.15l1.88-5.17A.5.5 0 0 1 6 2"/>
+            </svg>
+        </button>
+    </form>
+
+    <script>       
+        $(document).ready(function(){
+            const csrftoken = $('#csrf_token').val();
+            $('#pingform').on('submit', function(event){
+                event.preventDefault();
+        
+                $.ajax({
+                    url: "/ping/",
+                    type: "POST",
+                    headers: {'X-CSRFToken': csrftoken},
+                    data: {pinginput: $('#pinginput').val()},
+                    success: function(pings){
+                        $('#pingform')[0].reset();
+                        $('#vl').prepend(`<p class="newping" id="hl"></p><span class="newping" id="pinguser"> ${pings.user}</span>
+                                        <span class="newping" id="pingdate">${pings.date}</span>
+                                        <p class="newping" id="pingvalue">${pings.content}</p>
+                                        <div class="repvl" id="repvl-"{{ping.id}}"></div>
+                                        <a class="pingreply-{{ping.id}}" id="pingreply">View replies</a>
+                                        <form method="post" id="replyform" class="replyform-{{ping.id}}">
+                                            {%csrf_token%}
+                                            <input type="hidden" id="csrf_token" value="{{ csrf_token }}">
+                                            <input type="text" name="reply" placeholder="Reply..." class="replyinput" id="replyinput-{{ping.id}}" required>
+                                            <button type="submit" id="replyformsubmit">
+                                                <svg id="submitsvg" xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="rgb(170, 170, 170)" class="bi bi-arrow-up-short" viewBox="0 0 16 16">
+                                                    <path fill-rule="evenodd" d="M8 12a.5.5 0 0 0 .5-.5V5.707l2.146 2.147a.5.5 0 0 0 .708-.708l-3-3a.5.5 0 0 0-.708 0l-3 3a.5.5 0 1 0 .708.708L7.5 5.707V11.5a.5.5 0 0 0 .5.5"/>
+                                                </svg>
+                                            </button>
+                                        </form>`);
+                        $('.newping').last().hide().slideDown(200);
+                        $('#vl').scrollTop(0);
+                    },
+                });
+            });
+        });
+    </script>
+
+    <div id="allping">
+        <svg id="pingsvg" width="70" height="70" viewBox="0 0 100 100">
+            <g transform="matrix(1 0 0 1 50 50)" id="afe44377-f407-41d0-8106-9af90f392de8"  >
+            <rect style="stroke: none; stroke-width: 1; stroke-dasharray: none; stroke-linecap: butt; stroke-dashoffset: 0; stroke-linejoin: miter; stroke-miterlimit: 4; fill: rgb(100, 100, 100); fill-rule: nonzero; opacity: 1; visibility: hidden;" vector-effect="non-scaling-stroke"  x="-50" y="-50" rx="0" ry="0" width="100" height="100" />
+            </g>
+            <g transform="matrix(Infinity NaN NaN Infinity 0 0)" id="bd1dfac2-05b2-4d5d-b685-a55ec7576bf3"  >
+            </g>
+            <g transform="matrix(0.09 0 0 0.09 50 50)"  >
+            <g vector-effect="non-scaling-stroke"   >
+                    <g transform="matrix(1 0 0 1 0 0)"  >
+            <rect style="stroke: none; stroke-width: 1; stroke-dasharray: none; stroke-linecap: butt; stroke-dashoffset: 0; stroke-linejoin: miter; stroke-miterlimit: 4; fill: rgb(100, 100, 100); fill-rule: nonzero; opacity: 1; visibility: hidden;" vector-effect="non-scaling-stroke"  x="-540" y="-540" rx="0" ry="0" width="1080" height="1080" />
+            </g>
+                    <g transform="matrix(23.07 0 0 22.97 0 -194.36)"  >
+            <path style="stroke: rgb(0,0,0); stroke-width: 0; stroke-dasharray: none; stroke-linecap: butt; stroke-dashoffset: 0; stroke-linejoin: miter; stroke-miterlimit: 4; fill: rgb(100, 100, 100); fill-rule: nonzero; opacity: 1;" vector-effect="non-scaling-stroke"  transform=" translate(-8, -8)" d="M 8 1 C 5.790861000676826 1 4 2.790861000676826 4 5 C 4 7.209138999323174 5.790861000676826 9 8 9 C 10.209138999323173 9 12 7.209138999323174 12 5 C 12 2.790861000676826 10.209138999323173 1 8 1 M 3 5 C 3.0000338751399567 2.303557584653532 5.1381869030729455 0.09284084062539133 7.83312716828829 0.002848244551788781 C 10.528067433503635 -0.08714435152181377 12.808938467424817 1.9760071746159822 12.988857192000962 4.666440402364612 C 13.168775916577108 7.356873630113243 11.1829263283415 9.705355758231288 8.5 9.975 L 8.5 15.5 C 8.5 15.776142374915397 8.276142374915397 16 8 16 C 7.723857625084603 16 7.5 15.776142374915397 7.5 15.5 L 7.5 9.975 C 4.945044759750164 9.718217336930104 2.999967740688162 7.567826632522669 3 5.000000000000003" stroke-linecap="round" />
+            </g>
+                    <g transform="matrix(0 27.75 -12.7 0 -4.83 88.28)"  >
+            <path style="stroke: rgb(0,0,0); stroke-width: 0; stroke-dasharray: none; stroke-linecap: butt; stroke-dashoffset: 0; stroke-linejoin: miter; stroke-miterlimit: 4; fill: rgb(100, 100, 100); fill-rule: nonzero; opacity: 1;" vector-effect="non-scaling-stroke"  transform=" translate(-8, -8)" d="M 6 2 C 6.2105150377374505 2.0000895674968415 6.398424899744953 2.1320262791191307 6.47 2.3300000000000005 L 10 12.036 L 11.53 7.827999999999999 C 11.602240529585822 7.630814583389808 11.789998248012683 7.499783664998295 12 7.5 L 15.5 7.5 C 15.776142374915397 7.5 16 7.723857625084603 16 8 C 16 8.276142374915397 15.776142374915397 8.5 15.5 8.5 L 12.35 8.5 L 10.469999999999999 13.67 C 10.398229150653615 13.867742239874726 10.210364084973113 13.99941277890768 10 13.99941277890768 C 9.789635915026885 13.99941277890768 9.601770849346384 13.867742239874726 9.53 13.67 L 6 3.964 L 4.47 8.171 C 4.398091736824248 8.368579536647996 4.210258097669013 8.500063084056661 4 8.5 L 0.5 8.5 C 0.22385762508460327 8.5 0 8.276142374915397 0 8 C 0 7.723857625084603 0.22385762508460327 7.5 0.5 7.5 L 3.65 7.5 L 5.529999999999999 2.33 C 5.601575100255047 2.1320262791191302 5.7894849622625495 2.0000895674968415 6 2" stroke-linecap="round" />
+            </g>
+            </g>
+            </g>
+        </svg>
+        <div id="vl">
+            {%for ping in allping%}
+            <p id="hl"></p>
+            <a id="pinguser" href="/searchprofile/{{ping.user.id}}">{{ping.user.username}}</a> <span id="pingdate">{{ping.created_at.date}}</span>
+            <p id="pingvalue">{{ping.content}}</p>
+            <div class="repvl" id="repvl-{{ping.id}}"></div>
+            <a class="pingreply-{{ping.id}}" id="pingreply">View replies</a>
+            <form method="post" id="replyform" class="replyform-{{ping.id}}">
+                {%csrf_token%}
+                <input type="hidden" id="csrf_token" value="{{ csrf_token }}">
+                <input type="text" name="reply" placeholder="Reply..." class="replyinput" id="replyinput-{{ping.id}}" required>
+                <button type="submit" id="replyformsubmit">
+                    <svg id="submitsvg" xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="rgb(170, 170, 170)" class="bi bi-arrow-up-short" viewBox="0 0 16 16">
+                        <path fill-rule="evenodd" d="M8 12a.5.5 0 0 0 .5-.5V5.707l2.146 2.147a.5.5 0 0 0 .708-.708l-3-3a.5.5 0 0 0-.708 0l-3 3a.5.5 0 1 0 .708.708L7.5 5.707V11.5a.5.5 0 0 0 .5.5"/>
+                    </svg>
+                </button>
+            </form>
+            <script>
+                $(document).ready(function() {
+                    $('.pingreply-{{ping.id}}').click(function() {
+                        $.ajax({
+                        url: "/view_ping_reply/{{ping.id}}",
+                        type: 'GET',
+                        success: function(reply_list) {
+                            let pingsHtml = '';
+                            reply_list.forEach(function(ping) {
+                                pingsHtml += "<p id='rephl'></p><a id='repuser' href='/searchprofile/" + ping.user_id + "'>" + ping.username +"</a> <span id='repdate'>"+ ping.created_at +"</span><p id='repvalue'>" + ping.content + "</p>";
+                            });
+                            $('#repvl-{{ping.id}}').html(pingsHtml);
+                            $('#repvl-{{ping.id}}').slideToggle(400);
+                        },
+                        error: function() {
+                            $('#repvl-{{ping.id}}').html('<span>An error occurred while checking the status.</span>');
+                        }
+                        });
+                    });
+                });
+            </script>
+            <script>       
+                $(document).ready(function(){
+                    const csrftoken = $('#csrf_token').val();
+                    $('.replyform-{{ping.id}}').on('submit', function(event){
+                        event.preventDefault();
+                        $.ajax({
+                            url: "/pingreply/{{ping.id}}",
+                            type: "POST",
+                            headers: {'X-CSRFToken': csrftoken},
+                            data: {reply: $('#replyinput-{{ping.id}}').val()},
+                            success: function(replys){
+                                $('.replyform-{{ping.id}}')[0].reset();
+                                $('#repvl-{{ping.id}}').prepend("<p id='rephl'></p><a id='repuser' href='/searchprofile/" + replys.senderid + "'>" + replys.sender +"</a> <span id='repdate'>"+ replys.created_at +"</span><p id='repvalue'>" + replys.content + "</p>");
+                                $('#repvl-{{ping.id}}').show(400);
+                            },
+                            error: function() {
+                            $('#repvl-{{ping.id}}').html('<span>An error occurred while checking the status.</span>');
+                        }
+                        });
+                    });
+                });
+            </script>
+            {%endfor%}
+        </div>
+    </div>
+</div>

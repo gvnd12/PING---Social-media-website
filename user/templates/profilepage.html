@@ -1,0 +1,134 @@
+{%extends 'topbar.html'%}
+
+{% load static %}
+
+{% block body %}
+
+<link rel="stylesheet" href="{% static 'profilepage.css' %}">
+
+<div id="profile">
+  {%if messages%}
+    {%for i in messages%}
+      <script>alert('{{i}}')</script>
+    {%endfor%}
+  {%endif%}
+  <img id="propic" src="{{user.profile_pic.url}}" alt="">
+  <p id="username">{{user.username}}</p>
+  <p id="name">{{user.first_name}} {{user.last_name}}</p>
+
+  <a id="followers" href="/followers/{{user.id}}">Followers</a>
+
+  <a id="following" href="/following/{{user.id}}">Following</a>
+
+  <section id="line"></section>
+
+  {%if post%}
+    <div id="allposts">
+      {%for p in post%}
+        <div id="post">
+          <img src="{{p.Post_image.url}}"  alt="Unable to load image" id="postpic">
+
+          <a id="cmtview-{{p.id}}" class="cmtview"><img id="cmticon" src="{% static 'commenticon.svg' %}" alt=""></a>
+          <script>
+            $(document).ready(function() {
+              $('#cmtview-{{p.id}}').click(function() {
+                $.ajax({
+                  url: "/viewcomments/{{p.id}}",
+                  type: 'GET',
+                  success: function(comments) {
+                    let commentsHtml = '';
+                    comments.forEach(function(comment) {
+                      commentsHtml += "<a id='cmtuser' style='font-family: bodyreg; font-weight: bold;' href='/searchprofile/" + comment.user_id + "'>" + comment.username + "</a><p id='cmtcontent'>" + comment.content + "</p><span id='cmtdate'>Posted on: "+ comment.created_at +"</span><br><br>";
+                    });
+                    $('#profilecmt-{{p.id}}').html(commentsHtml);
+                    $('.cmtviewbox-{{p.id}}').slideToggle(300)
+                  },
+                  error: function() {
+                    $('#profilecmt-{{p.id}}').html('<span>An error occurred while checking the status.</span>');
+                  }
+                });
+              });
+              $(document).mouseup(function(e) {
+                var commentBox = $('.cmtviewbox-{{p.id}}');
+                var trigger = $('#cmtview-{{p.id}}');
+                var form = $('.cmtform-{{p.id}}');
+                if (!commentBox.is(e.target) && commentBox.has(e.target).length === 0 && 
+                  !trigger.is(e.target) && trigger.has(e.target).length === 0 && !form.is(e.target) && form.has(e.target).length === 0) {
+                  commentBox.slideUp(300);
+                }
+              });
+            });
+          </script>
+
+          <p id="postlike" class="pdesc"><b style="font-family: 'bodyreg'; font-weight: 900;">{{p.likes.count}}</b> like(s)</p>
+          <p id="postcaption" class="pdesc"><b style="font-family: 'bodyreg';font-size: 110%;">{{user.username}}: </b>{{p.Post_description}}</p>
+          <p id="postdate" class="pdesc" style="font-size: 100%; font-weight: 500;">Posted on: <span style="font-family: 'bodyreg'; font-size: 80%; font-weight: 200;">{{p.created_at}}</span></p>
+
+          <div id="cmtviewbox" class="cmtviewbox-{{p.id}}" style="display: none;">
+            <p id="commentsheader">Comments</p>
+            <p id="profilecmt-{{p.id}}" class="cmtline"></p>
+          </div>
+
+          <form id="cmtform" class="cmtform-{{p.id}}" method="post">
+            {%csrf_token%}
+            <input type="hidden" id="csrf_token" value="{{ csrf_token }}">
+            <input type="text" name="comment" id="cmtinput-{{p.id}}" class="cmtinput" required placeholder="Post a comment...">
+            <button type="submit" id="cmtbtn">Comment</button>
+          </form>
+
+          <script>       
+            $(document).ready(function(){
+              const csrftoken = $('#csrf_token').val();
+              $('.cmtform-{{p.id}}').on('submit', function(event){
+                event.preventDefault();
+        
+                $.ajax({
+                  url: "/comment/{{p.id}}",
+                  type: "POST",
+                  headers: {'X-CSRFToken': csrftoken},
+                  data: {comment: $('#cmtinput-{{p.id}}').val()},
+                  success: function(commentsview){
+                    $('.cmtform-{{p.id}}')[0].reset();
+                    $('#profilecmt-{{p.id}}').prepend("<a id='cmtuser' style='font-family: bodyreg; font-weight: bold;' href='/searchprofile/" + commentsview.senderid + "'>" + commentsview.sender +"</a><p id='cmtcontent'>" + commentsview.content + "</p><span id='cmtdate'>Posted on: "+ commentsview.created_at +"</span><br><br>");
+                    $('.cmtviewbox-{{p.id}}').scrollTop(0);
+                  },
+                });
+              });
+            });
+          </script>
+        </div>
+        
+        <button id="postmenu-{{p.id}}" class="postmenu">
+          <svg id="threedot" xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="white" viewBox="0 0 16 16">
+            <path d="M9.5 13a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0m0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0m0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0"/>
+          </svg>
+        </button>
+
+        <script>
+          $(document).ready(function(){
+            postmenu=document.getElementById('postmenu-{{p.id}}');
+              $('#postmenu-{{p.id}}').click(function(event){
+                $('#postmenuoption-{{p.id}}').fadeToggle(100);
+              })
+          })
+        </script>
+
+        <section id="postmenuoption-{{p.id}}" class="postmenuoption" style="display: none;">
+          <!-- <a id="captionedit" href="">Edit caption</a> -->
+          <a id="deletepost" href="/userdeletepost/{{p.id}}">Delete post</a>
+        </section>
+
+        <br>
+        <p id="psep"></p>
+        <br>
+      {%endfor%}
+    </div>
+  {%else%}
+    <div id="newpostdiv">
+        <a class="newpost" href="/post/">+</a>
+        <span id="nopost">No posts</span>
+    </div>
+  {%endif%}
+</div>
+
+{% endblock %}

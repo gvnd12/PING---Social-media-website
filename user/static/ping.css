@@ -1,0 +1,211 @@
+#allping
+{
+    overflow-y: auto;
+    height: 86.5vh;
+    margin-top: 5%;
+}
+#allping::-webkit-scrollbar
+{
+    width: 5px;
+    background: rgb(30, 30, 30);
+    border-radius: 10px;
+}
+#allping::-webkit-scrollbar-thumb
+{
+    width: 2px;
+    background: rgb(150, 150, 150);
+    border-radius: 10px;
+}
+
+#pingsvg
+{
+    position: relative;
+    left: -17px;
+}
+
+#vl
+{
+    color: white;
+    min-height: 10vh;
+    max-height: auto;
+    width: 90%;
+    border-left: 1.5px solid rgb(100, 100, 100);
+    margin: -27.5px 0 0 17px;
+}
+
+.repvl
+{
+    color: white;
+    min-height: 0vh;
+    margin-top: 0px;
+    margin-left: 30px;
+    max-height: auto;
+    width: 50%;
+    border-left: 1.5px solid rgb(100, 100, 100);
+}
+
+#hl
+{
+    border-bottom-left-radius: 10px;
+    height: 10px;
+    width: 20px;
+    border-bottom: 1px solid rgb(100, 100, 100);
+    border-left: 1px solid rgb(100, 100, 100);
+    margin-top: 0;
+    display: inline-block;
+    position: relative;
+    top: 13px;
+    right: .5px;
+}
+
+#rephl
+{
+    border-bottom-left-radius: 10px;
+    height: 10px;
+    width: 20px;
+    border-bottom: 1px solid rgb(100, 100, 100);
+    border-left: 1px solid rgb(100, 100, 100);
+    margin-top: 0;
+    display: inline-block;
+    position: relative;
+    top: 13px;
+    right: 1px;
+}
+
+#pingform
+{
+    display: flex;
+    width: 95%;
+    height: 50px;
+    margin-left: 2.5%;
+    margin-top: 10.5%;
+    border-radius: 50px;
+    border: 1px solid rgb(40, 40, 40);
+}
+
+#pinginput
+{
+    width: 80%;
+    border-radius: 50px;
+    background: none;
+    border: none;
+    color: white;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+#pinginput:focus
+{
+    outline: none;
+}
+
+#pingsubmit
+{
+    width: 20%;
+    border-radius: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: none;
+    cursor: pointer;
+}
+
+#pinguser
+{
+    font-size: 90%;
+}
+
+#repuser{
+    font-size: 90%;
+}
+
+#pingvalue
+{
+    font-size: 90%;
+    color: rgb(170, 170, 170);
+    margin-left: 30px;
+    margin-top: 0;
+    margin-bottom: 0;
+    max-width: 100%;
+    overflow-wrap: break-word;
+}
+
+#repvalue
+{
+    font-size: 90%;
+    color: rgb(170, 170, 170);
+    margin-left: 30px;
+    margin-top: 0;
+    margin-bottom: 0;
+    max-width: 100%;
+    overflow-wrap: break-word;
+}
+
+#pingdate
+{
+    font-size: 60%;
+    color: rgb(170, 170, 170);
+}
+
+#repdate
+{
+    font-size: 60%;
+    color: rgb(170, 170, 170);
+}
+
+#pingreply
+{
+    width: 60px;
+    display: block;
+    margin-top: 5px;
+    margin-bottom: 10px;
+    margin-left: 30px;
+    font-size: 70%;
+    color: rgb(100, 100, 100);
+}
+
+#replyform
+{
+    margin-top: 10px;
+    margin-left: 13%;
+    width: 70%;
+    border-radius: 30px;
+    height: 30px;
+    border: 1px solid rgb(40, 40, 40);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.replyinput
+{
+    border-radius: 100px;
+    height: 100%;
+    background: none;
+    border: none;
+    width: 79%;
+    padding-left: 10px;
+    padding-right: 10px;
+    color: rgb(170, 170, 170);
+}
+.replyinput:focus
+{
+    outline: none;
+}
+
+#replyformsubmit
+{
+    width: 20%;
+    border-radius: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: none;
+    cursor: pointer;
+}
+
+#submitsvg
+{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

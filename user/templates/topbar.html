@@ -1,0 +1,152 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en" style="background: rgb(0, 0, 0);">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="csrf-token" content="{{ csrf_token }}">
+    <title>PING</title>
+    <link rel="shortcut icon" href="{% static 'logo.svg' %}" type="image/x-icon">
+    <link rel="stylesheet" href="{% static 'topbar.css' %}">
+    <script src="{% static 'jQuery.js' %}"></script>
+    <script>
+        function confirm()
+        {
+            document.getElementById('dialog').showModal()
+        }
+
+        function cancel()
+        {
+            document.getElementById('dialog').close();
+        }
+
+        var settings=0
+        function rotate()
+        {
+            if(settings==0)
+            {
+                document.getElementById('settings').style.rotate='90deg';
+                document.getElementById('settingsdiv').style.scale='1';
+                settings=1
+            }
+            else if(settings==1)
+            {
+                document.getElementById('settings').style.rotate='0deg';
+                document.getElementById('settingsdiv').style.scale='0';
+                settings=0
+            }
+        }
+
+
+        $(document).ready(function(){
+            $("#noti").click(function(event){
+                $("#notiframe").slideToggle(300, function() {
+                    document.getElementById('notiframe').src = "{% url 'notifications' %}";
+                });
+                event.stopPropagation();
+            });
+
+            $(document).click(function(event) {
+                if(!$(event.target).closest("#notiframe, #noti").length && $("#notiframe").is(":visible")) {
+                    $("#notiframe").slideUp();
+                }
+            });
+        });
+
+        $(document).ready(function() {
+            $("#notiframe").on('load', function() {
+                var iframeContent = $(this).contents();
+                iframeContent.find('body').css({
+                    'overflow': 'scroll',
+                });
+
+                var styleTag = document.createElement("style");
+                styleTag.innerHTML = "::-webkit-scrollbar { display: none; }";
+                iframeContent.find('head').append(styleTag);
+            });
+        });
+    </script>
+</head>
+<body>
+
+    <dialog id="dialog">
+        <h2 id="confirmheader">Confirm?</h2>
+        <!-- <p id="modalline"></p> -->
+        <a href="/logout/" id="cnfrmlogout">Logout</a>
+        <a id="cancelbtn" onclick="cancel()">Cancel</a>
+    </dialog>
+
+    <div id="topbar">
+        <span id="ping">PING</span>
+        
+        <a id="home" class="link" href="/feed/">
+            <svg id="homeicon" viewBox="0 0 24 24" width="21" height="21" fill="white">
+                <path d="M 12 2 A 1 1 0 0 0 11.289062 2.296875 L 1.203125 11.097656 A 0.5 0.5 0 0 0 1 11.5 A 0.5 0.5 0 0 0 1.5 12 L 4 12 L 4 20 C 4 20.552 4.448 21 5 21 L 9 21 C 9.552 21 10 20.552 10 20 L 10 14 L 14 14 L 14 20 C 14 20.552 14.448 21 15 21 L 19 21 C 19.552 21 20 20.552 20 20 L 20 12 L 22.5 12 A 0.5 0.5 0 0 0 23 11.5 A 0.5 0.5 0 0 0 22.796875 11.097656 L 12.716797 2.3027344 A 1 1 0 0 0 12.710938 2.296875 A 1 1 0 0 0 12 2 z"/>
+            </svg>
+            &nbsp;&nbsp;<span id="homespan">Home</span>
+        </a>
+
+        <a id="postlink" class="link" href="/post/">
+            <svg id="posticon" fill="white" class="bi bi-plus-circle-fill" viewBox="0 0 16 16">
+                <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M8.5 4.5a.5.5 0 0 0-1 0v3h-3a.5.5 0 0 0 0 1h3v3a.5.5 0 0 0 1 0v-3h3a.5.5 0 0 0 0-1h-3z"/>
+            </svg>
+            &nbsp;&nbsp;<span id="postspan">Post</span>
+        </a>
+
+        {%if notifications%}
+            {% if notifications.count < 9 %}
+                <a id="noti" class="link">
+                    <svg id="notiicon" fill="white" class="bi bi-bell-fill" viewBox="0 0 16 16">
+                        <path d="M8 16a2 2 0 0 0 2-2H6a2 2 0 0 0 2 2m.995-14.901a1 1 0 1 0-1.99 0A5 5 0 0 0 3 6c0 1.098-.5 6-2 7h14c-1.5-1-2-5.902-2-7 0-2.42-1.72-4.44-4.005-4.901"/>
+                    </svg>
+                    &nbsp;&nbsp;<span id="notispan">Notifications</span> <span id="noticount">{{notifications.count}}</span>
+                </a>
+            {%else%}
+            <a id="noti" class="link">
+                <svg id="notiicon" fill="white" class="bi bi-bell-fill" viewBox="0 0 16 16">
+                    <path d="M8 16a2 2 0 0 0 2-2H6a2 2 0 0 0 2 2m.995-14.901a1 1 0 1 0-1.99 0A5 5 0 0 0 3 6c0 1.098-.5 6-2 7h14c-1.5-1-2-5.902-2-7 0-2.42-1.72-4.44-4.005-4.901"/>
+                </svg>
+                &nbsp;&nbsp;<span id="notispan">Notifications</span> <span id="noticount">9+</span>
+            </a>
+            {%endif%}    
+        {%else%}
+        <a id="noti" class="link">
+            <svg id="notiicon" fill="white" class="bi bi-bell-fill" viewBox="0 0 16 16">
+                <path d="M8 16a2 2 0 0 0 2-2H6a2 2 0 0 0 2 2m.995-14.901a1 1 0 1 0-1.99 0A5 5 0 0 0 3 6c0 1.098-.5 6-2 7h14c-1.5-1-2-5.902-2-7 0-2.42-1.72-4.44-4.005-4.901"/>
+            </svg>
+            &nbsp;&nbsp;<span id="notispan">Notifications</span>
+        </a>
+        {%endif%}
+
+        <iframe id="notiframe"></iframe>
+
+        <div id="settingsdiv">
+            <a id="edit" href="/edit/{{user.id}}">Edit Profile</a>
+            <button id="logoutbtn" onclick="confirm()">Logout</button>
+        </div>
+
+        <form id="searchform" action="/search/" method="post">
+            {%csrf_token%}
+            <input type="search" name="search" placeholder="Search" id="searchinput">
+            <button type="submit" id="searchbtn">
+                <svg id="searchicon" viewBox="0 0 16 16">
+                    <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0"/>
+                </svg>
+            </button>
+        </form>
+
+        <a id="topbarusername" href="/profile/"> <img id="topbardp" src="{{user.profile_pic.url}}" alt=""><span id="topbarusernamespan" >{{user.username}}</span></a>
+        <button id="settings" onclick="rotate()">
+            <svg id="settingimg" width="22" height="22" fill="white" class="bi bi-gear" viewBox="0 0 16 16">
+                <path d="M8 4.754a3.246 3.246 0 1 0 0 6.492 3.246 3.246 0 0 0 0-6.492M5.754 8a2.246 2.246 0 1 1 4.492 0 2.246 2.246 0 0 1-4.492 0"/>
+                <path d="M9.796 1.343c-.527-1.79-3.065-1.79-3.592 0l-.094.319a.873.873 0 0 1-1.255.52l-.292-.16c-1.64-.892-3.433.902-2.54 2.541l.159.292a.873.873 0 0 1-.52 1.255l-.319.094c-1.79.527-1.79 3.065 0 3.592l.319.094a.873.873 0 0 1 .52 1.255l-.16.292c-.892 1.64.901 3.434 2.541 2.54l.292-.159a.873.873 0 0 1 1.255.52l.094.319c.527 1.79 3.065 1.79 3.592 0l.094-.319a.873.873 0 0 1 1.255-.52l.292.16c1.64.893 3.434-.902 2.54-2.541l-.159-.292a.873.873 0 0 1 .52-1.255l.319-.094c1.79-.527 1.79-3.065 0-3.592l-.319-.094a.873.873 0 0 1-.52-1.255l.16-.292c.893-1.64-.902-3.433-2.541-2.54l-.292.159a.873.873 0 0 1-1.255-.52zm-2.633.283c.246-.835 1.428-.835 1.674 0l.094.319a1.873 1.873 0 0 0 2.693 1.115l.291-.16c.764-.415 1.6.42 1.184 1.185l-.159.292a1.873 1.873 0 0 0 1.116 2.692l.318.094c.835.246.835 1.428 0 1.674l-.319.094a1.873 1.873 0 0 0-1.115 2.693l.16.291c.415.764-.42 1.6-1.185 1.184l-.291-.159a1.873 1.873 0 0 0-2.693 1.116l-.094.318c-.246.835-1.428.835-1.674 0l-.094-.319a1.873 1.873 0 0 0-2.692-1.115l-.292.16c-.764.415-1.6-.42-1.184-1.185l.159-.291A1.873 1.873 0 0 0 1.945 8.93l-.319-.094c-.835-.246-.835-1.428 0-1.674l.319-.094A1.873 1.873 0 0 0 3.06 4.377l-.16-.292c-.415-.764.42-1.6 1.185-1.184l.292.159a1.873 1.873 0 0 0 2.692-1.115z"/>
+            </svg>
+        </button>
+    </div>
+
+    {% block body %}
+
+    {% endblock %}
+   
+</body>
+</html>

@@ -1,0 +1,23 @@
+{% extends 'topbar.html' %}
+
+{% load static %}
+
+{% block body %}
+
+<link rel="stylesheet" href="{% static 'following.css' %}">
+
+    <div id="following">
+        <p id="followingcount"><b id="count">{{followings.count}}</b> Following</p>
+        <div id="followingbox">
+            {%for i in followings%}
+                <div id="followingdiv">
+                    <a id="followingspan" href="/searchprofile/{{i.id}}">
+                        <img id="followingpropic" src="{{i.profile_pic.url}}" alt="">
+                        <span id="followingusername">{{i.username}}</span>
+                    </a>
+                </div>
+            {%endfor%}
+        </div>
+    </div>
+
+{% endblock %}

@@ -1,0 +1,464 @@
+*
+{
+    font-family: 'bodyreg';
+    font-weight: 500;
+}
+
+#dm
+{
+    width: 18%;
+    position: fixed;
+    top: 38.2%;
+    left: 100%;
+    z-index: 1000;
+    transition: .3s ease;
+    border-top: 1px solid rgb(40, 40, 40);
+}
+
+#searchprofile
+{
+    height: 100vh;
+    width: 63.9%;
+    position: relative;
+    left: 18.05%;
+    border-right: 1px solid rgb(40, 40, 40);
+    background: rgb(0, 0, 0);
+    color: white;
+    margin-top: -730px;
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
+#searchprofile::-webkit-scrollbar
+{
+    display: none;
+}
+
+a
+{
+    text-decoration: none;
+    color: white;
+}
+
+#searchprofilepropic
+{
+    width: 200px;
+    height: 200px;
+    position: relative;
+    left: 100px;
+    top: 40px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 3px solid rgb(255, 255, 255);
+}
+
+#searchprofileusername
+{
+    width: 50%;
+    font-size: 180%;
+    position: relative;
+    bottom: 150px;
+    left: 45%;
+    overflow: hidden;
+}
+
+#searchprofilename
+{
+    width: 50%;
+    font-size: 120%;
+    color: rgba(255, 255, 255, 0.557);
+    position: relative;
+    bottom: 180px;
+    left: 45%;
+    overflow: hidden;
+}
+
+#searchprofileunfollow
+{
+    width: 15%;
+    height: 40px;
+    position: relative;
+    bottom: 90px;
+    left: 4%;
+    font-size: 110%;
+    border-radius: 10px;
+    border: 1px solid rgb(40, 40, 40);
+    transition: .1s ease-in-out;
+    background: none;
+}
+
+#searchprofileunfollow:hover
+{
+    background: rgb(202, 0, 0);
+    border: 1px solid rgb(202, 0, 0);
+    color: rgb(0, 0, 0);
+    cursor: pointer;
+    #unfollowicon
+    {
+        fill: rgb(0, 0, 0);
+    }
+}
+
+#searchprofilefollow
+{
+    width: 15%;
+    height: 40px;
+    position: relative;
+    bottom: 90px;
+    left: 4%;
+    font-size: 110%;
+    border-radius: 10px;
+    border: 1px solid rgb(40, 40, 40);
+    transition: .1s ease-in-out;
+    background: white;
+    color: rgb(0, 0, 0);
+    cursor: pointer;
+}
+
+#searchprofilefollowprivate
+{
+    width: 15%;
+    height: 40px;
+    position: relative;
+    bottom: 80px;
+    left: 13%;
+    font-size: 110%;
+    border-radius: 10px;
+    border: 1px solid rgb(40, 40, 40);
+    transition: .1s ease-in-out;
+    background: white;
+    color: rgb(0, 0, 0);
+    cursor: pointer;
+}
+
+#searchprofilefollowerslink
+{
+    width: 15%;
+    height: 40px;
+    position: relative;
+    bottom: 200px;
+    left: 45%;
+    font-size: 110%;
+    border-radius: 10px;
+    border: 1px solid rgb(40, 40, 40);
+    transition: .1s ease-in-out;
+    background: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#searchprofilefollowinglink
+{
+    width: 15%;
+    height: 40px;
+    position: relative;
+    bottom: 241px;
+    left: 63%;
+    font-size: 110%;
+    border-radius: 10px;
+    border: 1px solid rgb(40, 40, 40);
+    transition: .1s ease-in-out;
+    background: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#searchprofilefollowerslink:hover, #searchprofilefollowinglink:hover
+{
+    background: rgb(255, 255, 255);
+    border: 1px solid white;
+    color: black;
+}
+
+#messagebtn
+{
+    width: 15%;
+    height: 40px;
+    position: relative;
+    bottom: 213px;
+    left: 21%;  
+    font-size: 110%;
+    border-radius: 10px;
+    border: 1px solid rgb(40, 40, 40);
+    transition: .1s ease-in-out;
+    background: none;
+}
+#messagebtn:hover
+{
+    background: #ffffff;
+    border: 1px solid white;
+    color: black;
+    cursor: pointer;
+    #msgicon
+    {
+        fill: rgb(48, 48, 48);
+    }
+}
+
+#msgicon
+{
+    position: relative;
+    top: 2px;
+}
+
+#searchprofileline
+{
+    width: 100%;
+    height: 1px;
+    background-color: rgb(40, 40, 40);
+    z-index: 10;
+    position: absolute;
+    top: 45%;
+}
+
+#searchprofileallposts
+{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: -100px;
+}
+
+#searchprofilepost
+{
+    width: 58%;
+    background: rgba(20, 20, 20);
+    padding: 5px 5px 15px 5px;
+    border-radius: 30px;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+}
+
+#searchprofilepostpic
+{
+    width: 100%;
+    max-height: 350px;
+    object-fit: fill;
+}
+
+.likebtn
+{
+    width: 26px;
+    height: 26px;
+    margin-left: 10px;
+    transition: .2s ease-in-out;
+    background: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.likeicon
+{
+    width: 100%;
+}
+
+#searchprofilecmtview
+{
+    width: 20px;
+    height: 20px;
+    background: none;
+    transition: .2s ease-in-out;
+    text-decoration: none;
+    margin-left: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    left: 5%;
+    bottom: 19px;
+}
+
+#cmticon
+{
+    width: 100%;
+}
+
+.searchprofiledesc
+{
+    line-height: 30px;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+#searchprofilelikecount
+{
+    margin-top: -15px;
+}
+
+#searchprofilepdesc
+{
+    margin-top: -20px;
+    font-weight: 100;
+    word-break: break-all;
+    font-size: 90%;
+}
+
+#searchprofilepostedon
+{
+    margin-top: -20px;
+    font-weight: 500;
+    font-size: 100%;
+}
+
+#searchprofilecmt
+{
+    margin-left: 20px;
+    margin-right: 20px;
+    font-size: 90%;
+    font-weight: 200;
+}
+
+#cmtviewbox
+{
+    max-height: 300px;
+    overflow-y: auto;
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-top: -10px;
+    background: rgb(40, 40, 40);
+    padding: 10px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+#cmtviewbox::-webkit-scrollbar
+{
+    width: 5px;
+    background: rgb(28, 28, 28);
+    border-radius: 10px;
+}
+#cmtviewbox::-webkit-scrollbar-thumb
+{
+    border-radius: 10px;
+    background: rgb(60, 60, 60);
+}
+
+#commentsheader
+{
+    margin-top: 5px;
+    margin-left: 10px;
+    margin-bottom: 0;
+    font-size: 110%;
+    font-family: 'Bold';
+}
+
+.cmtline
+{
+    margin-left: 20px;
+}
+
+#cmtcontent
+{
+    width: 95%;
+    overflow-wrap: break-word;
+    margin: 0;
+    font-size: 90%;
+    margin-left: 10px;
+    margin-top: 0px;
+    color: rgb(170, 170, 170);
+}
+
+#cmtdate
+{
+    font-size: 70%;
+    font-weight: 500;
+    margin-left: 10px;
+    color: rgb(100, 100, 100);
+}
+
+#searchprofilecmtform
+{
+    width: 60%;
+    height: 40px;
+    border: 1px solid rgb(40, 40, 40);
+    border-radius: 30px;
+    margin-top: -10px;
+    margin-left: 10px;
+}
+
+.searchprofilecmtinput
+{
+    height: 95%;
+    width: 62%;
+    border: none;
+    padding: none;
+    border-radius: 30px;
+    background: none;
+    padding-left: 5%;
+    padding-right: 5%;
+    color: white;
+    font-size: 80%;
+}
+
+.searchprofilecmtinput:focus
+{
+    outline: none;
+}
+
+#searchprofilecmtbtn
+{
+    height: 100%;
+    width: 25%;
+    border-radius: 30px;
+    border: none;
+    cursor: pointer;
+    background: none;
+    text-align: center;
+    color: rgb(190, 190, 190);
+}
+
+#searchprofilepsep
+{
+    width: 100%;
+    height: 1px;
+    background: rgb(40, 40, 40);
+}
+
+#msgframe
+{
+    width: 80%;
+    background: none;
+    position: absolute;
+    top: 0%;
+    left: 0%;
+    border:1px solid rgb(80, 80, 80);
+    border-radius: 10px;
+}
+
+#elsediv
+{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 5%;
+}
+
+#privateacc
+{
+    text-align: center;
+    width: 50%;
+}
+
+#followtosee
+{
+    text-align: center;
+    width: 50%;
+}
+
+#nopostdiv
+{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding-bottom: 20%;
+    margin-top: -80px;
+}
+
+#noposts
+{
+    font-size: 110%;
+}

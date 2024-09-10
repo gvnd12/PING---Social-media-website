@@ -1,0 +1,91 @@
+{%load static%}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="{% static 'registration.css' %}">
+    <script src="{% static 'registration.js' %}"></script>
+</head>
+<body>
+    <span id="ping">PING</span>
+    <span id="regheader">Create an account</span>
+    <form id="registerform" action="" method="post" enctype="multipart/form-data">
+        {%csrf_token%}
+
+        <div id="fnamediv">
+            <input type="text" name="first_name" required id="fname">
+            <label for="fname">First name</label>
+        </div>
+
+        <div id="lnamediv">
+            <input type="text" name="last_name" id="lname" required>
+            <label for="lname">Last name</label>
+        </div>
+
+        <div id="usernamediv">
+            <input type="text" name="username" id="username" required>
+            <label for="username">Username</label>
+        </div>
+
+        {%if usernameerror%}
+        <span id="usernameerror">{{usernameerror}}</span>
+        {%endif%}
+
+        <div id="emaildiv">
+            <input type="email" name="email" id="email" required>
+            <label for="email">Email</label>
+        </div>
+
+        <div id="mbnodiv">
+            <input type="number" name="mobile_no" id="mbno" required>
+            <label for="mbno">Mobile number</label>
+        </div>
+
+        {%if mobileerror%}
+        <span id="mobileerror">{{mobileerror}}</span>
+        {%endif%}
+        
+        <div id="passdiv">
+            <input type="password" name="password" id="password" required>
+            <label for="password">Password</label>
+        </div>
+
+        <div id="cpassdiv">
+            <input type="password" name="confirm_password" id="cpass" required>
+            <label for="cpass">Confirm password</label>
+        </div>
+        
+        {%if passworderror%}
+        <span id="passworderror">{{passworderror}}</span>
+        {%endif%}
+
+        <div id="dobdiv">
+            <input type="date" name="dob" id="dob" required>
+            <label for="dob">Date of birth</label>
+        </div>
+        
+        <div id="genderdiv">
+            <select name="gender" id="gender" required>
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+            </select>
+            <label for="gender">Gender</label>
+        </div>
+        
+        <div id="picdiv">
+            <input type="file" name="pic" placeholder='pic' id="pic">
+            <label for="pic">Upload a profile picture</label>
+        </div>
+        
+        <input type="submit" id="regsubmit" value="Create">
+
+        <p><a id="login" href="/">Login</a></p>
+    </form>
+
+    <script>
+
+    </script>
+</body>
+</html>

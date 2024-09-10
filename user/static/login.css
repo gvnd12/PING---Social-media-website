@@ -1,0 +1,353 @@
+@font-face {
+    font-family: 'Bold';
+    src: url(fonts/BinomaTrialBold-1jPDj.ttf);
+}
+
+@font-face {
+    font-family: 'bodyreg';
+    src: url(fonts/RedHatDisplay-VariableFont_wght.ttf);
+}
+
+@font-face {
+    font-family: 'input';
+    src: url(fonts/Roboto-Regular.ttf);
+}
+
+*
+{
+    font-family: 'bodyreg';
+}
+
+@media only screen and (min-width: 600px) {
+
+    body
+    {
+        margin: 0;
+        background: url(bg/18702139_sep09.jpg);
+        background-size: cover;
+        background-repeat: no-repeat;
+    }
+
+    #ping
+    {
+        user-select: none;
+        color: white;
+        font-size: 300%;
+        font-weight: 900;
+        position: absolute;
+        top: 40%;
+        left: 20%;
+    }
+
+    #loginheader
+    {
+        position: absolute;
+        top: 28%;
+        left: 72%;
+        z-index: 2;
+        font-size: 200%;
+        font-family: 'Bold';
+        color: rgb(0,0,35);
+    }
+
+    #loginform
+    {
+        background: rgb(255, 255, 255);
+        width: 49.9%;
+        height: 99.8%;
+        position: absolute;
+        left: 50%;
+        top: 0%;
+    }
+
+    #error
+    {
+        position: absolute;
+        top: 35%;
+        left: 35.5%;
+        color: red;
+        font-weight: 500;
+    }
+
+    input
+    {
+        height: 100%;
+        z-index: 1;
+        background: rgba(255, 255, 255, 0);
+        border: 1px solid rgb(0,0,35);
+        border-radius: 7px;
+        padding-left: 12px;
+        padding-right: 12px;
+        width: 25%;
+        font-weight: 400;
+        font-size: 100%;
+    }
+
+    label
+    {
+        position: absolute;
+        left: 37.5%;
+        opacity: 60%;
+        padding-left: 5px;
+        padding-right: 5px;
+        background-color: white;
+        transition: .1s;
+        user-select: none;
+        font-weight: 400;
+    }
+
+    input:focus + label
+    {
+        top: -20%;
+        font-size: 80%;
+        z-index: 2;
+        opacity: 100%;
+        font-weight: 500;
+        
+    }
+
+    input:valid + label
+    {
+        top: -20%;
+        font-size: 80%;
+        z-index: 2;
+        opacity: 100%;
+    }
+
+    #usernamediv
+    {
+        width: 100%;
+        height: 6%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: absolute;
+        top: 40%;
+    }
+
+    #passworddiv
+    {
+        position: absolute;
+        top: 48%;
+        width: 100%;
+        height: 6%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    #loginsubmit
+    {
+        width: 30%;
+        height: 6%;
+        position: absolute;
+        top: 57%;
+        left: 35%;
+        background-color: rgb(0, 0, 35);
+        color: white;
+        font-size: 100%;
+        cursor: pointer;
+    }
+
+    p
+    {
+        position: relative;
+        top: 60%;
+        text-align: center;
+    }
+
+    #register
+    {
+        text-decoration: none;
+        color: rgb(0,0,35);
+        font-weight: 500;
+    }
+
+    #adminlogoimg
+    {
+        width: 1.5%;
+        position: absolute;
+        right: 20px;
+        bottom: 20px;
+        z-index: 10;
+        transition: .2s;
+    }
+
+    #adminlogoimg:hover
+    {
+        scale: 1.1;
+    }
+
+}
+
+@media only screen and (max-width: 600px) {
+
+    body
+    {
+        margin: 0;
+        background: url(bg/18702139_sep09.jpg);
+        background-size: auto;
+        background-repeat: no-repeat;
+    }
+
+    #ping
+    {
+        user-select: none;
+        font-weight: 900;
+        font-size: 200%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-top: 35%;
+        color: rgb(255, 255, 255);
+    }
+
+    #loginheader
+    {
+        font-weight: 500;
+        color: rgb(255, 255, 255);
+        font-family: 'bold';
+        font-size: 120%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: absolute;
+        top: 29%;
+        left: 43%;
+    }
+
+    #adminlogo
+    {
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        margin-right: 10px;
+        margin-bottom: 10px;
+    }
+
+    #adminlogoimg
+    {
+        width: 20px;
+    }
+
+    #loginform
+    {
+        width: 80%;
+        margin-left: 10%;
+        margin-top: 5%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        background: rgb(10, 10, 10);
+        border: 1px solid rgb(40, 40, 40);
+        border-radius: 20px;
+    }
+
+    #error
+    {
+        color: red;
+        font-size: 90%;
+        font-weight: 500;
+        position: absolute;
+        top: 32.5%;
+        left: 23%;
+    }
+
+    #usernamediv
+    {
+        margin-top: 13%;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    #passworddiv
+    {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    input
+    {
+        color: white;
+        height: 35px;
+        z-index: 1;
+        background: rgba(255, 255, 255, 0);
+        border: 1px solid rgb(40, 40, 40);
+        border-radius: 7px;
+        padding-left: 12px;
+        padding-right: 12px;
+        width: 60%;
+        font-size: 80%;
+        font-weight: 400;
+    }
+
+    label
+    {
+        position: absolute;
+        left: 25%;
+        opacity: 40%;
+        padding-left: 5px;
+        padding-right: 5px;
+        color: rgb(255, 255, 255);
+        background-color: rgb(10, 10, 10);
+        transition: .1s;
+        user-select: none;
+        font-weight: 400;
+    }
+
+    input:valid, input:focus
+    {
+        outline: 1px solid rgb(155, 155, 155);
+    }
+
+    input:focus + label
+    {
+        margin-top: -11%;
+        font-size: 70%;
+        z-index: 2;
+        opacity: 100%;
+        font-weight: 500;
+        background: rgb(10, 10, 10);
+    }
+
+    input:valid + label
+    {
+        margin-top: -11%;
+        background: rgb(10, 10, 10);
+        font-size: 70%;
+        z-index: 2;
+        opacity: 100%;
+    }
+
+    #loginsubmit
+    {
+        width: 50%;
+        margin-top: 1%;
+        background: rgb(255, 255, 255);
+        border: none;
+        color: rgb(0, 0, 0);
+        font-size: 90%;
+        font-weight: 500;
+    }
+
+    #register
+    {
+        z-index: 100;
+        text-decoration: none;
+        color: rgb(120, 120, 120);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 500;
+        position: absolute;
+        top: 58%;
+        left: 32%;
+    }
+
+}

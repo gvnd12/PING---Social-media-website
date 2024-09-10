@@ -1,0 +1,53 @@
+@font-face {
+    font-family: 'Bold';
+    src: url(fonts/BinomaTrialBold-1jPDj.ttf);
+}
+
+@font-face {
+    font-family: 'bodyreg';
+    src: url(fonts/RedHatDisplay-VariableFont_wght.ttf);
+}
+
+@font-face {
+    font-family: 'input';
+    src: url(fonts/Roboto-Regular.ttf);
+}
+
+*
+{
+    font-family: 'bodyreg';
+}
+
+#notification
+{
+    color: white;
+    overflow-y: scroll;
+    max-height: 380px;
+}
+
+#notili
+{
+    margin-bottom: 10px;
+    margin-left: -10px;
+    margin-top: -8px;
+    margin-right: 5px;
+}
+
+/* #notidate
+{
+    font-size: 60%;
+    color: rgb(185, 185, 185);
+} */
+
+#notihead
+{
+    margin-top: -10px;
+    margin-left: -30px;
+}
+
+#nonew
+{
+    margin-top: 0px;
+    margin-left: 5px;
+    height: 100px;
+}

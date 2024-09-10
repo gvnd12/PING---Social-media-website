@@ -1,0 +1,71 @@
+{% load static %}
+
+<script>
+    var dm_hide=0
+        function dmhide()
+        {
+            if(dm_hide==0)
+            {
+                document.getElementById('arrowimg').style.rotate='180deg';
+                document.getElementById('dm').style.top='93.1%';
+                document.getElementById('messagebox').style.background='rgb(40, 40, 40)';
+                document.getElementById('dm').style.borderTopWidth='0px'
+                document.getElementById('messagebox').style.borderTopLeftRadius='20px';
+                document.getElementById('messagebox').style.borderTopRightRadius='20px';
+                dm_hide=1
+            }
+            else if(dm_hide==1)
+            {
+                document.getElementById('arrowimg').style.rotate='0deg';
+                document.getElementById('dm').style.top='38.2%';
+                document.getElementById('dm').style.borderTopWidth='1px'
+                document.getElementById('messagebox').style.background='black'
+                dm_hide=0
+            }
+        }
+</script>
+
+<link rel="stylesheet" href="{% static 'directmessage.css' %}">
+
+<div id="messagebox">
+    <span id="msguser"><img src="{{searchuser.profile_pic.url}}" id="dmsearchuserpropic" alt="">&nbsp;&nbsp;{{searchuser.username}}</span>
+    <button id="arrowimg"><img onclick="dmhide()" id="arrow" src="{% static 'arrowdown.svg' %}" alt=""></button>
+    <div id="msglist">
+        {%for m in allmsg%}
+            {%if m.senderid == searchuser.id%}
+                <p id="msgparasend" class="msgpara"><span class="msgcontent">{{m.content}}</span></p>
+            {%else%}
+                <p id="msgpararecieve" class="msgpara"><span class="msgcontent">{{m.content}}</span></p>
+            {%endif%}
+        {%endfor%}
+    </div>
+
+    <form id="msgsendform" method="post">
+        {% csrf_token %}
+        <input type="hidden" id="csrf_token" value="{{ csrf_token }}">
+        <input type="text" name="msg" id="msginput" required placeholder="Send a message...">
+        <input type="submit" value="Send" name="" id="msgsendbtn">
+    </form>
+
+    <script>       
+        $(document).ready(function(){
+            const csrftoken = $('#csrf_token').val();
+            $('#msgsendform').on('submit', function(event){
+                event.preventDefault();
+        
+                $.ajax({
+                    url: "/msgsend/{{searchuser.id}}",
+                    type: "POST",
+                    headers: {'X-CSRFToken': csrftoken},
+                    data: {msg: $('#msginput').val()},
+                    success: function(message){
+                        $('#msgsendform')[0].reset();
+                        $('#msglist').append(`<p id='msgpararecieve' class='newmsg' class='msgpara'><span class='msgcontent'>${message.content}</span></p>`);
+                        $('.newmsg').last().hide().fadeIn(200);
+                        $('#msglist').scrollTop($('#msglist')[0].scrollHeight);
+                    },
+                });
+            });
+        });
+    </script>
+</div>

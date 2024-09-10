@@ -1,0 +1,282 @@
+{% extends 'topbar.html' %}
+
+{% load static %}
+
+{% block body %}
+
+  <script>
+    var dm_box=0
+    function dmbox()
+    {
+        if(dm_box==0)
+        {
+          document.getElementById('dm').style.left='82%';
+          dm_box=1
+        }
+        else if(dm_box==1)
+        {
+          document.getElementById('dm').style.left='100%';
+          dm_box=0
+        }
+    }
+  </script>
+
+  <link rel="stylesheet" href="{% static 'searchprofile.css' %}">
+  <script src="{% static 'jQuery.js' %}"></script>
+
+  <div id="searchprofile">
+    
+    <div id="dm">
+      {% include 'directmessage.html'%}
+    </div>
+
+    <img id="searchprofilepropic" src="{{searchuser.profile_pic.url}}" alt="">
+    <p id="searchprofileusername">{{searchuser.username}}</p>
+    <p id="searchprofilename">{{searchuser.first_name}} {{searchuser.last_name}}</p>
+
+    {%if is_following and searchuser.account_privacy == 'Public'%}
+
+      <button type="submit" id="searchprofileunfollow">
+        <svg id="unfollowicon" height="16" fill="white" viewBox="0 0 24 24" width="16" data-name="Layer 1">
+          <path d="m24 12a1 1 0 0 1 -1 1h-6a1 1 0 0 1 0-2h6a1 1 0 0 1 1 1zm-15 0a6 6 0 1 0 -6-6 6.006 6.006 0 0 0 6 6zm0 2a9.01 9.01 0 0 0 -9 9 1 1 0 0 0 1 1h16a1 1 0 0 0 1-1 9.01 9.01 0 0 0 -9-9z"/>
+        </svg>
+        &nbsp;Unfollow
+      </button>
+
+    {%elif is_following and searchuser.account_privacy == 'Private'%}
+
+    <button type="submit" id="searchprofileunfollow" class="searchprofileunfollowprivate">
+      <svg id="unfollowicon" height="16" fill="white" viewBox="0 0 24 24" width="16" data-name="Layer 1">
+        <path d="m24 12a1 1 0 0 1 -1 1h-6a1 1 0 0 1 0-2h6a1 1 0 0 1 1 1zm-15 0a6 6 0 1 0 -6-6 6.006 6.006 0 0 0 6 6zm0 2a9.01 9.01 0 0 0 -9 9 1 1 0 0 0 1 1h16a1 1 0 0 0 1-1 9.01 9.01 0 0 0 -9-9z"/>
+      </svg>
+      &nbsp;Unfollow
+    </button>
+
+    {%elif not is_following and searchuser.account_privacy == 'Private'%}
+
+      <button type="submit" id="searchprofilefollowprivate">
+        <svg id="followicon" fill="black" viewBox="0 0 512 512" width="16" height="16">
+          <g>
+            <path d="M490.667,234.667H448V192c0-11.782-9.551-21.333-21.333-21.333c-11.782,0-21.333,9.551-21.333,21.333v42.667h-42.667   c-11.782,0-21.333,9.551-21.333,21.333c0,11.782,9.551,21.333,21.333,21.333h42.667V320c0,11.782,9.551,21.333,21.333,21.333   c11.782,0,21.333-9.551,21.333-21.333v-42.667h42.667c11.782,0,21.333-9.551,21.333-21.333   C512,244.218,502.449,234.667,490.667,234.667z"/>
+            <circle cx="192" cy="128" r="128"/>
+            <path d="M192,298.667c-105.99,0.118-191.882,86.01-192,192C0,502.449,9.551,512,21.333,512h341.333   c11.782,0,21.333-9.551,21.333-21.333C383.882,384.677,297.99,298.784,192,298.667z"/>
+          </g>
+        </svg>
+        &nbsp;Follow
+      </button>
+
+    {%elif not is_following%}
+
+      <button type="submit" id="searchprofilefollow">
+        <svg id="followicon" fill="black" viewBox="0 0 512 512" width="16" height="16">
+          <g>
+            <path d="M490.667,234.667H448V192c0-11.782-9.551-21.333-21.333-21.333c-11.782,0-21.333,9.551-21.333,21.333v42.667h-42.667   c-11.782,0-21.333,9.551-21.333,21.333c0,11.782,9.551,21.333,21.333,21.333h42.667V320c0,11.782,9.551,21.333,21.333,21.333   c11.782,0,21.333-9.551,21.333-21.333v-42.667h42.667c11.782,0,21.333-9.551,21.333-21.333   C512,244.218,502.449,234.667,490.667,234.667z"/>
+            <circle cx="192" cy="128" r="128"/>
+            <path d="M192,298.667c-105.99,0.118-191.882,86.01-192,192C0,502.449,9.551,512,21.333,512h341.333   c11.782,0,21.333-9.551,21.333-21.333C383.882,384.677,297.99,298.784,192,298.667z"/>
+          </g>
+        </svg>
+        &nbsp;Follow
+      </button>
+
+    {% endif %}
+    <script>
+      $(document).ready(function() {
+          function handleFollowUnfollow(action, buttonId, msgContainerId) {
+              $.ajax({
+                  url: `/follow_unfollow/{{ searchuser.id }}`,
+                  type: 'POST',
+                  data: {csrfmiddlewaretoken: '{{ csrf_token }}'},
+                  success: function(response) {
+                    let icon;
+                    if (response.status === 'followed') {
+                      icon = '<svg id="unfollowicon" height="16" fill="black" viewBox="0 0 24 24" width="16" data-name="Layer 1"><path d="m24 12a1 1 0 0 1 -1 1h-6a1 1 0 0 1 0-2h6a1 1 0 0 1 1 1zm-15 0a6 6 0 1 0 -6-6 6.006 6.006 0 0 0 6 6zm0 2a9.01 9.01 0 0 0 -9 9 1 1 0 0 0 1 1h16a1 1 0 0 0 1-1 9.01 9.01 0 0 0 -9-9z"/></svg>';
+                      $(msgContainerId).show();
+                    } else {
+                      icon = '<svg id="followicon" fill="black" viewBox="0 0 512 512" width="16" height="16"><g><path d="M490.667,234.667H448V192c0-11.782-9.551-21.333-21.333-21.333c-11.782,0-21.333,9.551-21.333,21.333v42.667h-42.667   c-11.782,0-21.333,9.551-21.333,21.333c0,11.782,9.551,21.333,21.333,21.333h42.667V320c0,11.782,9.551,21.333,21.333,21.333   c11.782,0,21.333-9.551,21.333-21.333v-42.667h42.667c11.782,0,21.333-9.551,21.333-21.333   C512,244.218,502.449,234.667,490.667,234.667z"/><circle cx="192" cy="128" r="128"/><path d="M192,298.667c-105.99,0.118-191.882,86.01-192,192C0,502.449,9.551,512,21.333,512h341.333   c11.782,0,21.333-9.551,21.333-21.333C383.882,384.677,297.99,298.784,192,298.667z"/></g></svg>';
+                    }
+                    if(buttonId=='#searchprofilefollowprivate') {
+                      icon = '<svg id="unfollowicon" height="16" fill="black" viewBox="0 0 24 24" width="16" data-name="Layer 1"><path d="m24 12a1 1 0 0 1 -1 1h-6a1 1 0 0 1 0-2h6a1 1 0 0 1 1 1zm-15 0a6 6 0 1 0 -6-6 6.006 6.006 0 0 0 6 6zm0 2a9.01 9.01 0 0 0 -9 9 1 1 0 0 0 1 1h16a1 1 0 0 0 1-1 9.01 9.01 0 0 0 -9-9z"/></svg>';
+                      location.reload()
+                    }
+                    else if(buttonId=='.searchprofileunfollowprivate') {
+                      icon = '<svg id="followicon" height="16" fill="black" viewBox="0 0 24 24" width="16" data-name="Layer 1"><path d="m24 12a1 1 0 0 1 -1 1h-6a1 1 0 0 1 0-2h6a1 1 0 0 1 1 1zm-15 0a6 6 0 1 0 -6-6 6.006 6.006 0 0 0 6 6zm0 2a9.01 9.01 0 0 0 -9 9 1 1 0 0 0 1 1h16a1 1 0 0 0 1-1 9.01 9.01 0 0 0 -9-9z"/></svg>';
+                      location.reload()
+                    }
+                    $(buttonId).html(icon + '&nbsp;&nbsp;' + response.msg);
+                  },
+                  error: function() {
+                      $(buttonId).html('<span>An error occurred while processing the request.</span>');
+                  }
+              });
+          }  
+          $('#searchprofilefollow').click(function() {
+              handleFollowUnfollow('follow', '#searchprofilefollow', '#searchprofileallposts');
+          });
+          
+          $('#searchprofileunfollow').click(function() {
+              handleFollowUnfollow('unfollow', '#searchprofileunfollow', '#searchprofileallposts');
+          });
+  
+          $('#searchprofilefollowprivate').click(function() {
+              handleFollowUnfollow('follow', '#searchprofilefollowprivate', '#searchprofileallposts');
+          });
+
+          $('.searchprofileunfollowprivate').click(function() {
+              handleFollowUnfollow('unfollow', '.searchprofileunfollowprivate', '#searchprofileallposts');
+          });
+      });
+    </script>
+  
+    {%if is_following or searchuser.account_privacy == 'Public'%}
+
+    <a id="searchprofilefollowerslink" href="/followers/{{searchuser.id}}">Followers</a>
+    <a id="searchprofilefollowinglink" href="/following/{{searchuser.id}}">Following</a>
+    
+    {%endif%}
+    
+    <section id="searchprofileline"></section>
+
+    {%if is_following or searchuser.account_privacy == 'Public'%}
+      <button onclick="dmbox()" id="messagebtn">
+        <svg id="msgicon" width="17" height="17" fill="white" viewBox="0 0 16 16">
+          <path d="M16 8c0 3.866-3.582 7-8 7a9 9 0 0 1-2.347-.306c-.584.296-1.925.864-4.181 1.234-.2.032-.352-.176-.273-.362.354-.836.674-1.95.77-2.966C.744 11.37 0 9.76 0 8c0-3.866 3.582-7 8-7s8 3.134 8 7M5 8a1 1 0 1 0-2 0 1 1 0 0 0 2 0m4 0a1 1 0 1 0-2 0 1 1 0 0 0 2 0m3 1a1 1 0 1 0 0-2 1 1 0 0 0 0 2"/>
+        </svg>
+        Message
+      </button>
+
+      {%if searchuserpost%}
+
+        <div id="searchprofileallposts">
+          {%for i in searchuserpost%}
+            <div id="searchprofilepost">
+              <img src="{{i.Post_image.url}}"  alt="Post_image" id="searchprofilepostpic">
+
+              {% if i.id in liked_posts %}
+                <a id="like-toggle-{{ i.id }}" data-liked="liked" class="likebtn">
+                    <img id="likeicon-{{ i.id }}" class="likeicon" src="{% static 'unlikeicon.svg' %}" alt="">
+                </a>
+              {%else%}
+                <a id="like-toggle-{{ i.id }}" data-liked="unliked" class="likebtn">
+                  <img id="likeicon-{{ i.id }}" class="likeicon" src="{% static 'likeicon.svg' %}" alt="">
+                </a>
+              {%endif%}
+              <script>
+                  $(document).ready(function() {
+                      $('#like-toggle-{{ i.id }}').click(function() {
+                          var isLiked = $(this).attr('data-liked') === 'liked';
+              
+                          $.ajax({
+                              url: '/like/{{ i.id }}',
+                              type: 'POST',
+                              data: {csrfmiddlewaretoken: '{{ csrf_token }}'},
+                              success: function(likes) {
+                                  if (isLiked) {
+                                      $('#likeicon-{{ i.id }}').attr('src', '{% static "likeicon.svg" %}');
+                                      $('#like-toggle-{{ i.id }}').attr('data-liked', 'unliked');
+                                      
+                                  } else {
+                                      $('#likeicon-{{ i.id }}').attr('src', '{% static "unlikeicon.svg" %}');
+                                      $('#like-toggle-{{ i.id }}').attr('data-liked', 'liked');
+                                  }
+              
+                                  $('#likecount-{{ i.id }}').html(likes.count);
+                              },
+                              error: function() {
+                                  $('#like-toggle-{{ i.id }}').html('<span>An error occurred while checking the status.</span>');
+                              }
+                          });
+                      });
+                  });
+              </script>
+
+              <a id="searchprofilecmtview" class="searchprofilecmtview-{{i.id}}"><img id="cmticon" src="{% static 'commenticon.svg' %}" alt=""></a>
+              <script>
+                $(document).ready(function() {
+                  $('.searchprofilecmtview-{{i.id}}').click(function() {
+                    $.ajax({
+                      url: "/viewcomments/{{i.id}}",
+                      type: 'GET',
+                      success: function(comments) {
+                        let commentsHtml = '';
+                        comments.forEach(function(comment) {
+                          commentsHtml += "<a id='cmtuser' style='font-family: bodyreg; font-weight: bold;' href='/searchprofile/" + comment.user_id + "'>" + comment.username +"</a><p id='cmtcontent'>" + comment.content + "</p><span id='cmtdate'>Posted on: "+ comment.created_at +"</span><br><br>";
+                        });
+                        $('#searchprofilecmt-{{i.id}}').html(commentsHtml);
+                        $('.cmtviewbox-{{i.id}}').slideToggle(300)
+                      },
+                      error: function() {
+                        $('#searchprofilecmt-{{i.id}}').html('<span>An error occurred while checking the status.</span>');
+                      }
+                    });
+                  });
+                  $(document).mouseup(function(e) {
+                    var commentBox = $('.cmtviewbox-{{i.id}}');
+                    var trigger = $('.searchprofilecmtview-{{i.id}}');
+                    var form = $('.searchprofilecmtform-{{i.id}}');
+                    if (!commentBox.is(e.target) && commentBox.has(e.target).length === 0 && 
+                        !trigger.is(e.target) && trigger.has(e.target).length === 0 && !form.is(e.target) && form.has(e.target).length === 0) {
+                      commentBox.slideUp(300);
+                    }
+                  });
+                });
+              </script>
+
+              <p id="searchprofilelikecount" class="searchprofiledesc"><b id="likecount-{{ i.id }}" style="font-family: 'bodyreg'; font-weight: 900;">{{i.likes.count}}</b> like(s)</p>
+              <p id="searchprofilepdesc" class="searchprofiledesc"><b style="font-family: 'bodyreg';font-size: 110%;">{{searchuser.username}}: </b>{{i.Post_description}}</p>
+              <p id="searchprofilepostedon" class="searchprofiledesc">Posted on: <span style="font-family: 'bodyreg'; font-size: 80%;font-weight: 100;">{{i.created_at}}</span></p>
+
+              <div id="cmtviewbox" class="cmtviewbox-{{i.id}}" style="display: none;">
+                <p id="commentsheader">Comments</p>
+                <p id="searchprofilecmt-{{i.id}}" class="cmtline"></p>
+              </div>
+
+              <form id="searchprofilecmtform" class="searchprofilecmtform-{{i.id}}" method="post">
+                {%csrf_token%}
+                <input type="hidden" id="csrf_token" value="{{ csrf_token }}">
+                <input type="text" name="comment" id="searchprofilecmtinput-{{i.id}}" class="searchprofilecmtinput" required placeholder="Post a comment...">
+                <button type="submit" id="searchprofilecmtbtn">Comment</button>
+              </form>
+
+              <script>       
+                $(document).ready(function(){
+                  const csrftoken = $('#csrf_token').val();
+                  $('.searchprofilecmtform-{{i.id}}').on('submit', function(event){
+                    event.preventDefault();
+            
+                    $.ajax({
+                      url: "/comment/{{i.id}}",
+                      type: "POST",
+                      headers: {'X-CSRFToken': csrftoken},
+                      data: {comment: $('#searchprofilecmtinput-{{i.id}}').val()},
+                      success: function(commentsview){
+                        $('.searchprofilecmtform-{{i.id}}')[0].reset();
+                        $('#searchprofilecmt-{{i.id}}').prepend("<a id='cmtuser' style='font-family: bodyreg; font-weight: bold;' href='/searchprofile/" + commentsview.senderid + "'>" + commentsview.sender +"</a><p id='cmtcontent'>" + commentsview.content + "</p><span id='cmtdate'>Posted on: "+ commentsview.created_at +"</span><br><br>");
+                        $('.cmtviewbox-{{i.id}}').scrollTop(0);
+                      },
+                    });
+                  });
+                });
+              </script>
+
+            </div>
+            <br>
+              <p id="searchprofilepsep"></p>
+            <br>
+          {%endfor%}
+            </div>
+      {%else%}
+        <div id="nopostdiv">
+          <p id="noposts">No posts</p>
+        </div>
+      {%endif%}
+
+      {%else%}
+        <div id="elsediv">
+          <p id="privateacc">Private account!</p>
+          <p id="followtosee">Follow to view posts</p>
+        </div>
+    {%endif%}
+
+  </div>
+
+{% endblock %}

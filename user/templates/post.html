@@ -1,0 +1,60 @@
+{% extends 'topbar.html' %}
+
+{% load static %}
+
+{% block body %}
+
+<link rel="stylesheet" href="{% static 'post.css' %}">
+
+    <div id="create">
+        {%if error%}
+            <span id="error">{{error}}</span>
+        {%endif%}
+        <span id="createhead">Create a post</span>
+        <form id="createform" action="" method="post" enctype="multipart/form-data">
+            {%csrf_token%}
+            <div id="imageuploaddiv">
+                
+                <div id="imageupload"><label for="imageuploadinput" id="imageuploadlabel">+</label></div>
+                <input type="file" name="postimg" id="imageuploadinput">
+                <script>
+                    document.getElementById('imageuploadinput').addEventListener('change', function(event) {
+                        const file = event.target.files[0];
+                        if (file) {
+                            const reader = new FileReader();
+                            reader.onload = function(e) {
+                                const preview = document.getElementById('imagepreview');
+                                preview.src = e.target.result;
+                                preview.style.display = 'block';
+                            };
+                            reader.readAsDataURL(file);
+                            document.getElementById('imginputlabel').style.display='block'
+                        }
+                    });
+                </script>
+            </div>
+
+            <input type="file" name="postimg" id="imginput" style="display: none;">
+            <label for="imginput" style="display: none;" id="imginputlabel">Choose new image</label>
+            <script>
+                document.getElementById('imginput').addEventListener('change', function(event) {
+                        const file = event.target.files[0];
+                        if (file) {
+                            const reader = new FileReader();
+                            reader.onload = function(e) {
+                                const preview = document.getElementById('imagepreview');
+                                preview.src = e.target.result;
+                                preview.style.display = 'block';
+                            };
+                            reader.readAsDataURL(file);
+                            document.getElementById('imginputlabel').style.display='block'
+                        }
+                    });
+            </script>
+
+            <input type="text" name="postcont" id="captionbox" placeholder="Write a caption..." maxlength="200"><br>
+            <button id="postbtn" type="submit">Post</button>
+            <img src="" id="imagepreview" alt="">
+        </form>
+    </div>
+{% endblock %}

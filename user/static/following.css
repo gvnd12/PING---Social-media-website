@@ -1,0 +1,113 @@
+*
+{
+    font-family: 'bodyreg';
+}
+
+#following
+{
+    height: 100vh;
+    width: 63.9%;
+    position: relative;
+    left: 18.05%;
+    border-right: 1px solid rgb(40, 40, 40);
+    background: rgb(0,0,0);
+    color: white;
+    margin-top: -730px;
+    overflow-y: scroll;
+}
+#following::-webkit-scrollbar
+{
+    display: none;
+}
+
+#followingcount
+{
+    position: relative;
+    top: 6%;
+    left: 10%;
+    width: 80%;
+    font-size: 200%;
+}
+
+#followingbox
+{
+    padding-top: 0px;
+    height: 80%;
+    overflow-y: auto;
+    margin-top: 7%;
+}
+#followingbox::-webkit-scrollbar
+{
+    width: 10px;
+    border-radius: 30px;
+    background: rgb(104, 104, 104);
+}
+#followingbox::-webkit-scrollbar:horizontal
+{
+    display: none;
+}
+#followingbox::-webkit-scrollbar-thumb
+{
+    background: rgb(51, 51, 51);
+    border-radius: 30px;
+}
+
+#followingdiv
+{
+    width: 90%;
+    height: 50px;
+    position: relative;
+    top: 6%;
+    left: 10%;
+    margin-top: 20px;
+}
+
+#followingspan
+{
+    width: 30%;
+    height: 100%;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    padding-left: 10px;
+    border-radius: 10px;
+    text-decoration: none;
+}
+
+#followingspan:hover
+{
+    background: white;
+    #followingusername
+    {
+        color: black;
+    }
+    #followingpropic
+    {
+        border: 2px solid rgb(0, 0, 0);
+    }
+}
+
+#followingpropic
+{
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    border: 2px solid white;
+    object-fit: cover;
+}
+
+#followingusername
+{
+    text-decoration: none;
+    color: white;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    margin-left: 20px;
+    font-size: 120%;
+    height: 100%;
+    margin-top: 0;
+    margin-bottom: 0;
+    overflow: hidden;
+    margin-right: 20px;
+}

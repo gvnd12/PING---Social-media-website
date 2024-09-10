@@ -1,0 +1,152 @@
+*
+{
+    font-family: 'bodyreg';
+}
+
+#editprofile
+{
+    height: 100vh;
+    width: 63.9%;
+    height: 100vh;
+    position: relative;
+    left: 18.05%;
+    background: rgb(0, 0, 0);
+    color: white;
+    margin-top: -730px;
+    border-right: 1px solid rgb(40, 40, 40);
+}
+
+#editheader
+{
+    font-size: 200%;
+    position: relative;
+    top: 10%;
+    left: 10%;
+}
+
+#editform
+{
+    width: 60%;
+    position: relative;
+    left: 20%;
+    top: 15%;
+}
+
+#propiceditinput
+{
+    display: none;
+}
+
+#propiceditlabel
+{
+    cursor: pointer;
+}
+
+#propiceditpic
+{
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid white;
+}
+
+#editpropicicon
+{
+    width: 18px;
+    height: 18px;
+    position: absolute;
+    top: 80px;
+    left: 78px;
+    border-radius: 50%;
+    background: white;
+    color: black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+}
+
+#usernameeditinput
+{
+    position: relative;
+    left: 10%;
+    width: 30%;
+    height: 40px;
+    font-size: 100%;
+    padding-left: 10px;
+    padding-right: 10px;
+    border-radius: 10px;
+    background: none;
+    color: white;
+    border: 1px solid white;
+}
+
+#mobilenoinput
+{
+    position: relative;
+    left: 4.5%;
+    width: 30%;
+    height: 40px;
+    font-size: 100%;
+    padding-left: 10px;
+    padding-right: 10px;
+    border-radius: 10px;
+    background: none;
+    color: white;
+    border: 1px solid white;
+}
+
+#mobileerror
+{
+    color: red;
+    position: absolute;
+    top: 48.5%;
+    right: 25%;
+}
+
+#privacyinput
+{
+    position: relative;
+    left: 11%;
+    width: 30px;
+    height: 30px;
+}
+
+#privacylabel
+{
+    position: relative;
+    top: -10px;
+}
+
+#editsubmit
+{
+    position: relative;
+    top: 10px;
+    width: 25%;
+    height: 40px;
+    border-radius: 10px;
+    font-weight: 500;
+    background-color: white;
+    color: black;
+}
+#editsubmit:hover
+{
+    background-color: black;
+    border: 1px solid white;
+    color: white;
+    cursor: pointer;
+}
+
+#imagepreview
+{
+    z-index: 1;
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    object-fit: fill;
+    display: none;
+}

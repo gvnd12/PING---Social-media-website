@@ -1,0 +1,595 @@
+@font-face {
+    font-family: 'Bold';
+    src: url(fonts/BinomaTrialBold-1jPDj.ttf);
+}
+
+@font-face {
+    font-family: 'bodyreg';
+    src: url(fonts/RedHatDisplay-VariableFont_wght.ttf);
+}
+
+@font-face {
+    font-family: 'input';
+    src: url(fonts/Roboto-Regular.ttf);
+}
+
+*
+{
+    font-family: 'bodyreg';
+}
+
+@media only screen and (min-width: 600px) {
+
+    a
+    {
+        cursor: pointer;
+    }
+
+    button
+    {
+        border: none;
+        width: 100%;
+        background: rgb(35, 35, 35);
+        color: rgb(255, 255, 255);
+        font-size: 100%;
+        height: 100%;
+    }
+
+    #ping
+    {
+        font-weight: 900;
+        color: rgb(255, 255, 255);
+        width: 100%;
+        height: 10%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 280%;
+        position: absolute;
+        top: 2.5%;
+        user-select: none;
+    }
+
+    .link
+    {
+        text-decoration: none;
+        width: 70%;
+        height: 30%;
+        position: relative;
+        top: 95%;
+        display: flex;
+        align-items: center;
+        justify-content: start;
+        text-decoration: none;
+        color: white;
+        transition: .3s ease-in-out;
+        border-radius: 10px;
+        margin-left: 10%;
+        padding-left: 10%;
+    }
+
+    body
+    {
+        margin: 0;
+    }
+
+    #dialog
+    {
+        background: black;
+        margin: 0;
+        padding: 0;
+        border: none;
+        width: 30%;
+        height: 20%;
+        position: absolute;
+        top: 2%;
+        left: 35%;
+        border-top-right-radius: 40px;
+        border-bottom-left-radius: 40px;
+    }
+
+    #dialog::backdrop
+    {
+        background: rgba(33, 33, 33, 0.6);
+    }
+
+    #dialog h2
+    {
+        color: white;
+        margin: 0;
+        width: 100%;
+        position: absolute;
+        top: 10%;
+        text-align: center;
+    }
+
+    #dialog a
+    {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100px;
+        height: 30px;
+        border-radius: 7px;
+        text-decoration: none;
+    }
+
+    #cnfrmlogout
+    {
+        color: white;
+        position: absolute;
+        top: 50%;
+        left: 27%;
+        border: 1px solid rgb(40, 40, 40);
+    }
+    #cnfrmlogout:hover
+    {
+        background: rgb(169, 0, 0);
+        border: 1px solid rgb(169, 0, 0);
+    }
+
+    #cancelbtn
+    {
+        border: none;
+        position: absolute;
+        top: 50%;
+        left: 52%;
+        background: white;
+        color: black;
+    }
+
+    #topbar
+    {
+        background: rgb(0, 0, 0);
+        padding-top: 5%;
+        width: 18%;
+        height: 89.5vh;
+        display: grid;
+        flex-direction: column;
+        position: sticky;
+        top: 0;
+        border-right: 1px solid rgb(40, 40, 40);
+    }
+
+    #topbarusername
+    {
+        width: 50%;
+        height: 30%;
+        padding-left: 10%;
+        margin-left: 10%;
+        position: relative;
+        top: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: start;
+        border-radius: 10px;
+        color: white;
+        transition: .2s ease-in-out;
+        text-decoration: none;
+        font-size: 110%;
+        overflow: hidden;
+    }
+    #topbarusername:hover
+    {
+        background-color: rgb(255, 255, 255);
+        color: rgb(0, 0, 0);
+    }
+
+    #topbarusernamespan
+    {
+        overflow: hidden;
+        margin-left: 10px;
+        margin-right: 10px;
+        font-family: 'bodyreg';
+        font-weight: 500;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    #topbardp
+    {
+        width: 25px;
+        height: 25px;
+        border-radius: 50%;
+        border: 1px solid white;
+        object-fit: cover;
+        margin-left: -15px;
+    }
+
+    #settings
+    {
+        width: 37px;
+        height: 37px;
+        position: absolute;
+        bottom: 25px;
+        left: 75%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+        transition: .2s ease-in-out;
+        background: rgba(0, 0, 0, 0);
+    }
+    #settings:hover
+    {
+        background-color: rgb(255, 255, 255);
+        cursor: pointer;
+        #settingimg
+        {
+            fill: black;
+        }
+    }
+
+    #settingimg
+    {
+        width: 90%;
+        border-radius: 50%;
+    }
+
+    #home
+    {
+        position: relative;
+        top: 95%;
+        transition: .2s ease-in-out;
+    }
+    #home:hover
+    {
+        background-color: rgb(255, 255, 255);
+        color: black;
+        #homeicon
+        {
+            fill: black;
+            transition: 0s;
+        }
+    }
+
+    #homeicon
+    {
+        width: 22px;
+        height: 22px;
+        position: relative;
+        bottom: 2px;
+    }
+
+    #postlink
+    {
+        position: relative;
+        top: 30%;
+        transition: .2s ease-in-out;
+    }
+    #postlink:hover
+    {
+        background-color: rgb(255, 255, 255);
+        color: black;
+        #posticon
+        {
+            fill: black;
+        }
+    }
+
+    #posticon
+    {
+        width: 20px;
+        height: 20px;
+    }
+
+    #noti
+    {
+        position: relative;
+        top: -35%;
+        transition: .2s ease-in-out;
+    }
+    #noti:hover
+    {
+        background-color: rgb(255, 255, 255);
+        color: black;
+        #notiicon
+        {
+            fill: black;
+        }
+    }
+
+    #notiicon
+    {
+        width: 19px;
+        height: 20px;
+    }
+
+    #noticount
+    {
+        width: 10px;
+        height: 10px;
+        font-family: 'input';
+        font-size: 65%;
+        padding: 2px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: red;
+        position: relative;
+        left: 8px;
+        top: 1px;
+    }
+
+    #notiframe
+    {
+        width: 80%;
+        max-height: 380px;
+        display: none;
+        position: absolute;
+        top: 45%;
+        left: 10%;
+        border:1px solid rgb(40, 40, 40);
+        border-radius: 10px;
+    }
+    #notiframe::-webkit-scrollbar
+    {
+        display: none;
+    }
+
+    #searchform
+    {
+        width: 80%;
+        position: absolute;
+        top: 15%;
+        left: 10%;
+        height: 6%;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        border: 1px solid rgb(40, 40, 40);
+        border-radius: 30px;
+    }
+
+    #searchinput
+    {
+        padding-left: 20px;
+        width: 75%;
+        height: 100%;
+        font-size: 100%;
+        border-radius: 50px;
+        background: none;
+        color: rgb(255, 255, 255);
+        border: none;
+        font-weight: 500;
+    }
+    #searchinput:focus
+    {
+        outline: none;
+    }
+
+    #searchbtn
+    {
+        height: 100%;
+        width: 25%;
+        font-size: 100%;
+        background: none;
+        border: none;
+        border-radius: 30px;
+        cursor: pointer;
+    }
+
+    #searchicon
+    {
+        width: 50%;
+        display: flex;
+        align-items: center;
+        position: relative;
+        left: 13px;
+        fill: rgb(101, 101, 101);
+    }
+
+    #settingsdiv
+    {
+        padding-top: 4%;
+        padding-bottom: 4%;
+        scale: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        border-radius: 10px;
+        height: 40%;
+        width: 60%;
+        position: relative;
+        left: 28%;
+        top: 78%;
+        border: 1px solid rgb(40, 40, 40);
+        background: none;
+    }
+
+    #logoutbtn
+    {
+        width:90%;
+        height: 50%;
+        border-radius: 7px;
+        margin-top: 3%;
+        background: rgba(255, 255, 255, 0);
+        font-weight: 500;
+    }
+    #logoutbtn:hover
+    {
+        background-color: rgb(255, 255, 255);
+        color: black;
+        cursor: pointer;
+    }
+
+    #edit
+    {
+        width: 90%;
+        height: 50%;
+        border-radius: 7px;
+        text-decoration: none;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        background: rgba(255, 0, 0, 0)(255, 255, 255);
+        font-weight: 500;
+    }
+    #edit:hover
+    {
+        background-color: white;
+        color: black;
+    }
+
+    #confirmation
+    {
+        display: none;
+        border-radius: 10px;
+        width: 60%;
+        height: 100px;
+        background: none;
+        position: absolute;
+        left: 28%;
+        bottom: 23%;
+        z-index: 5;
+        border: 1px solid rgb(40, 40, 40);
+    }
+
+    .cnfrm
+    {
+        display: flex;
+        align-items: center;
+        justify-content: start;
+        width: 70%;
+        padding-left: 10%;
+        margin-left: 10%;
+        color: white;
+    }
+
+    #cnfrmhead
+    {
+        position: relative;
+        bottom: 10px;
+        left: 10%;
+        color: white;
+        width: 80%;
+        text-align: center;
+        font-weight: 500;
+    }
+
+    #cnfrmline
+    {
+        margin-top: -10px;
+        background-color: rgb(40, 40, 40);
+        border: none;
+        height: .5px;
+        position: relative;
+        bottom: 10px;
+    }
+
+    #cancel
+    {
+        height: 25px;
+        margin-top: 5px;
+        border-radius: 7px;
+        transition: .2s ease-in-out;
+    }
+
+    #confirm
+    {
+        height: 25px;
+        margin-top: -12px;
+        border-radius: 7px;
+        transition: .1s ease-in-out;
+        text-decoration: none;
+    }
+
+    #confirm:hover , #cancel:hover
+    {
+        background: rgb(255, 255, 255);
+        color: black;
+    }
+}
+
+@media only screen and (max-width: 600px) {
+
+    body
+    {
+        margin: 0;
+    }
+
+    a
+    {
+        text-decoration: none;
+        color: white;
+    }
+
+    #topbar
+    {
+        width: 100%;
+        height: 60px;
+        display: flex;
+        align-items: center;
+        justify-content: space-evenly;
+        z-index: 100;
+        padding-top: 10px;
+        position: absolute;
+        top: 0;
+        overflow: scroll;
+        padding-left: 30px;
+    }
+
+    #homespan, #postspan, #notispan
+    {
+        display: none;
+    }
+
+    #topbarusernamespan
+    {
+        display: none;
+    }
+
+    #topbardp
+    {
+        display: none;
+    }
+
+    #notiframe
+    {
+        display: none;
+    }
+
+    #notiicon, #posticon, #homeicon
+    {
+        width: 20px;
+        height: 20px;
+        margin-top: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    #settingsdiv
+    {
+        display: none;
+    }
+
+    #ping
+    {
+        font-weight: 900;
+        height: 100%;
+        width: 60px;
+        padding-left: 10px;
+        padding-right: 10px;
+        color: white;
+        background: red;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: absolute;
+        top: 0;
+        left: 0;
+        user-select: none;
+    }
+
+    #searchform
+    {
+        position: absolute;
+        bottom: 0%;
+    }
+
+}

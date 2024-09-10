@@ -1,0 +1,173 @@
+#messagebox
+{
+    background: rgb(0, 0, 0);
+    width: 100%;
+    height: 446px;
+    z-index: 1000;
+    padding-top: 1%;
+}
+
+#msguser
+{
+    position: relative;
+    top: 8px;
+    margin-left: 4%;
+    font-size: 120%;
+    color: rgb(255, 255, 255);
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    width: 200px;
+    overflow: hidden;
+}
+
+#dmsearchuserpropic
+{
+    width: 25px;
+    height: 25px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 2px solid rgb(255, 255, 255);
+}
+
+#arrowimg
+{
+    position: absolute;
+    right: 3%;
+    top: 2%;
+    width: 30px;
+    height: 30px;
+    transition: .3s;
+    background: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+#arrow
+{
+    width: 100%;
+}
+
+#msglist
+{
+    color: rgb(0, 0, 0);
+    background: black;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+    top: 3.9%;
+    padding-right: 10%;
+    width: 90%;
+    height: 79%;
+    overflow-y: scroll;
+    border-top: 1px solid rgb(40, 40, 40);
+}
+#msglist::-webkit-scrollbar
+{
+    width: 3px;
+    background: rgb(0, 0, 0);
+}
+
+#msglist::-webkit-scrollbar:horizontal
+{
+    display: none;
+}
+#msglist::-webkit-scrollbar-thumb
+{
+    width: 3px;
+    background: rgb(255, 255, 255);
+    border-radius: 30px;
+}
+
+.msgpara, .newmsg
+{
+    background: rgb(200, 200, 200);
+    color: rgb(198, 198, 198);
+    word-wrap: break-word;
+    width: 50%;
+    border-radius: 15px;
+    min-height: 0px;
+    padding: 25px 10px 0px 10px;
+    font-weight: 100;
+}
+
+#msgpararecieve
+{
+    position: relative;
+    left: 50%;
+    text-align: end;
+    background-color: rgb(40, 40, 40);
+    color: rgb(198, 198, 198);
+    border-bottom-right-radius: 0;
+}
+
+#msgparasend
+{
+    text-align: left;
+    position: relative;
+    left: 5%;
+    background-color: rgb(90, 90, 90);
+    color: rgb(198, 198, 198);
+    border-top-left-radius: 0;
+}
+
+.msgcontent
+{
+    position: relative;
+    bottom: 13px;
+}
+
+#msgsendform
+{
+    width: 99%;
+    height: 10%;
+    position: absolute;
+    bottom: 0%;
+    left: .5%;
+    border-radius: 50px;
+    background: rgb(0, 0, 0);
+    border: 1px solid rgb(40, 40, 40);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+#msginput
+{
+    padding-left: 10px;
+    padding-right: 10px;
+    width: 76%;
+    height: 100%;
+    font-size: 100%;
+    border-radius: 50px;
+    background: none;
+    color: rgb(255, 255, 255);
+    border: none;
+    
+}
+#msginput:focus
+{
+    outline: none;
+}
+
+#msginput::placeholder
+{
+    color: rgb(27, 27, 27);
+}
+
+#msgsendbtn
+{
+    color: white;
+    margin-right: 2%;
+    height: 100%;
+    width: 20%;
+    position: relative;
+    right: 0%;
+    font-size: 100%;
+    border-radius: 50px;
+    border: none;
+    cursor: pointer;
+    background: rgba(255, 255, 255, 0);
+}

@@ -1,0 +1,72 @@
+{% extends 'topbar.html' %}
+
+{% load static %}
+
+{% block body %}
+
+<link rel="stylesheet" href="{% static 'edit_profile.css' %}">
+
+    <div id="editprofile">
+        <span id="editheader">Edit Profile</span>
+        
+        {%if mobileerror%}
+        <span id="mobileerror">{{mobileerror}}</span>
+        {%endif%}
+
+        <form action="" method="post" id="editform" enctype="multipart/form-data">
+            {%csrf_token%}
+
+            <label for="propiceditinput" id="propiceditlabel"><img id="propiceditpic" src="{{user.profile_pic.url}}" alt=""><span id="editpropicicon">+</span></label>
+            <input type="file" id="propiceditinput" name="profilepic"><br><br>
+            <script>
+                document.getElementById('propiceditinput').addEventListener('change', function(event) {
+                    const file = event.target.files[0];
+                    if (file) {
+                        const reader = new FileReader();
+                        reader.onload = function(e) {
+                            const preview = document.getElementById('imagepreview');
+                            preview.src = e.target.result;
+                            preview.style.display = 'block';
+                        };
+                        reader.readAsDataURL(file);
+                    }
+                });
+            </script>
+
+        <input type="file" name="postimg" id="imginput" style="display: none;">
+        <script>
+            document.getElementById('imginput').addEventListener('change', function(event) {
+                    const file = event.target.files[0];
+                    if (file) {
+                        const reader = new FileReader();
+                        reader.onload = function(e) {
+                            const preview = document.getElementById('imagepreview');
+                            preview.src = e.target.result;
+                            preview.style.display = 'block';
+                        };
+                        reader.readAsDataURL(file);
+                    }
+                });
+        </script>
+
+            <label id="usernameeditlabel" for="usernameeditinput">Edit Username: </label>
+            <input id="usernameeditinput" type="text" name="username" value="{{user.username}}"><br><br>
+
+            <label for="mobilenoinput">Edit mobile number: </label>
+            <input id="mobilenoinput" type="number" name="mobile_no" value="{{user.mobile_no}}" id=""><br><br>
+
+            {%if user.account_privacy == 'Private' %}
+            <label id="privacylabel" for="privacyinput">Profile privacy: </label>
+            <input id="privacyinput" type="checkbox" name="privacy" checked><br><br>
+            {%else%}
+            <label id="privacylabel" for="privacyinput">Profile privacy</label>
+            <input id="privacyinput" type="checkbox" name="privacy"><br><br>
+            {%endif%}
+            
+            <button id="editsubmit" type="submit">Submit</button>
+            <img src="" id="imagepreview" alt="">
+
+        </form>
+    </div>
+
+    {% endblock %}

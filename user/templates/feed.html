@@ -1,0 +1,142 @@
+{% extends 'topbar.html' %}
+
+{% load static %}
+
+{%block body%}
+
+<link rel="stylesheet" href="{% static 'feed.css' %}">
+
+    <div id="feed">
+        {%if posts%}
+        <div id="allposts">
+            {%for post in posts%}
+                <div id="post">
+                    <p id="postuser"><a id="postuserlink" href="/searchprofile/{{post.user.id}}"><img id="postuserpropic" src="{{post.user.profile_pic.url}}" alt="">{{post.user.username}}</a></p>
+                    <img src="{{post.Post_image.url}}" alt="post image" id="postpic"><br>
+                    
+                    {% if post.id in liked_posts %}
+                    <a id="like-toggle-{{ post.id }}" data-liked="liked" class="like">
+                        <img id="likeicon-{{ post.id }}" class="likeicon" src="{% static 'unlikeicon.svg' %}" alt="">
+                    </a>
+                    {%else%}
+                    <a id="like-toggle-{{ post.id }}" data-liked="unliked" class="like">
+                        <img id="likeicon-{{ post.id }}" class="likeicon" src="{% static 'likeicon.svg' %}" alt="">
+                    </a>
+                    {%endif%}
+                    <script>
+                        $(document).ready(function() {
+                            $('#like-toggle-{{ post.id }}').click(function() {
+                                var isLiked = $(this).attr('data-liked') === 'liked';
+                    
+                                $.ajax({
+                                    url: '/like/{{ post.id }}',
+                                    type: 'POST',
+                                    data: {csrfmiddlewaretoken: '{{ csrf_token }}'},
+                                    success: function(likes) {
+                                        if (isLiked) {
+                                            $('#likeicon-{{ post.id }}').attr('src', '{% static "likeicon.svg" %}');
+                                            $('#like-toggle-{{ post.id }}').attr('data-liked', 'unliked');
+                                            
+                                        } else {
+                                            $('#likeicon-{{ post.id }}').attr('src', '{% static "unlikeicon.svg" %}');
+                                            $('#like-toggle-{{ post.id }}').attr('data-liked', 'liked');
+                                        }
+                    
+                                        $('#likecount-{{ post.id }}').html(likes.count);
+                                    },
+                                    error: function() {
+                                        $('#like-toggle-{{ post.id }}').html('<span>An error occurred while checking the status.</span>');
+                                    }
+                                });
+                            });
+                        });
+                    </script>
+
+                    <a id="cmtview" class="searchprofilecmtview-{{post.id}}"><img id="cmticon" src="{% static 'commenticon.svg' %}" alt=""></a>
+                    <script>
+                        $(document).ready(function() {
+                            $('.searchprofilecmtview-{{post.id}}').click(function() {
+                                $.ajax({
+                                url: "/viewcomments/{{post.id}}",
+                                type: 'GET',
+                                success: function(comments) {
+                                    let commentsHtml = '';
+                                    let cmtdate = '';
+                                    comments.forEach(function(comment) {
+                                        commentsHtml += "<a id='cmtuser' style='font-family: bodyreg; font-weight: bold;' href='/searchprofile/" + comment.user_id + "'>" + comment.username +"</a><p id='cmtcontent'>" + comment.content + "</p><span id='cmtdate'>Posted on: "+ comment.created_at +"</span><br><br>";
+                                    });
+                                    $('#searchprofilecmt-{{post.id}}').html(commentsHtml);
+                                    $('#cmtdate-{{post.id}}').html(cmtdate);
+                                    $('.cmtviewbox-{{post.id}}').slideToggle(300);
+                                },
+                                error: function() {
+                                    $('#searchprofilecmt-{{post.id}}').html('<span>An error occurred while checking the status.</span>');
+                                }
+                                });
+                            });
+                            $(document).mouseup(function(e) {
+                                var commentBox = $('.cmtviewbox-{{post.id}}');
+                                var trigger = $('.searchprofilecmtview-{{post.id}}');
+                                var form = $('.cmtform-{{post.id}}');
+                                if (!commentBox.is(e.target) && commentBox.has(e.target).length === 0 && 
+                                    !trigger.is(e.target) && trigger.has(e.target).length === 0 && !form.is(e.target) && form.has(e.target).length === 0) {
+                                commentBox.slideUp(300);
+                                }
+                            });
+                        });
+                    </script>
+                    
+                    <p id="postlikecount" class="pdesc"><b id="likecount-{{ post.id }}" class="pdesc" style="font-family: 'bodyreg'; font-weight: 900;">{{post.likes.count}}</b> like(s)</p>
+                    <p id="postdesc" class="pdesc"><b class="pdesc" style="font-size: 110%;"><a id="postusername" href="/searchprofile/{{post.user.id}}" style="font-family: 'bodyreg'; margin: 0;">{{post.user.username}}</a>:</b> {{post.Post_description}}</p>
+                    <p id="postedon" class="pdesc">Posted on: <span style="font-family: 'bodyreg'; font-weight: 200; font-size: 80%;">{{post.created_at}}</span></p>
+                    
+                    <div id="cmtviewbox" class="cmtviewbox-{{post.id}}" style="display: none;">
+                        <p id="commentsheader">Comments</p>
+                        <p id="searchprofilecmt-{{post.id}}" class="cmtline"></p>
+                    </div>
+
+                    <form id="cmtform" class="cmtform-{{post.id}}" method="post">
+                        {%csrf_token%}
+                        <input type="hidden" id="csrf_token" value="{{ csrf_token }}">
+                        <input type="text" name="comment" class="cmtinput" id="cmtinput-{{post.id}}" required placeholder="Post a comment...">
+                        <button type="submit" id="cmtbtn">Comment</button>
+                    </form>
+
+                    <script>       
+                        $(document).ready(function(){
+                            const csrftoken = $('#csrf_token').val();
+                            $('.cmtform-{{post.id}}').on('submit', function(event){
+                                event.preventDefault();
+                        
+                                $.ajax({
+                                    url: "/comment/{{post.id}}",
+                                    type: "POST",
+                                    headers: {'X-CSRFToken': csrftoken},
+                                    data: {comment: $('#cmtinput-{{post.id}}').val()},
+                                    success: function(commentsview){
+                                        $('.cmtform-{{post.id}}')[0].reset();
+                                        $('#searchprofilecmt-{{post.id}}').prepend("<a id='cmtuser' style='font-family: bodyreg; font-weight: bold;' href='/searchprofile/" + commentsview.senderid + "'>" + commentsview.sender +"</a><p id='cmtcontent'>" + commentsview.content + "</p><span id='cmtdate'>Posted on: "+ commentsview.created_at +"</span><br><br>");
+                                        $('.cmtviewbox-{{post.id}}').scrollTop(0);
+                                    },
+                                });
+                            });
+                        });
+                    </script>
+
+                </div>
+                <br>
+                <p id="psep"></p>
+                <br>
+            {%endfor%}
+            <div id="pingbox">
+                {% include 'ping.html' %}
+            </div>
+        </div>
+        {%else%}
+        <p id="nonewpostinfeed">No posts to view in feed</p>
+        <div id="pingbox">
+            {% include 'ping.html' %}
+        </div>
+        {%endif%}
+    </div>
+{%endblock%}

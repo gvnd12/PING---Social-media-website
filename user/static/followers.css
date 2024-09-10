@@ -1,0 +1,114 @@
+*
+{
+    font-family: 'bodyreg';
+}
+
+#followers
+{
+    height: 100vh;
+    width: 63.9%;
+    position: relative;
+    left: 18.05%;
+    border-right: 1px solid rgb(40, 40, 40);
+    background: rgb(0, 0, 0);
+    color: white;
+    margin-top: -761px;
+    padding-bottom: 31px;
+    overflow-y: scroll;
+}
+#followers::-webkit-scrollbar
+{
+    display: none;
+}
+
+#followercount
+{
+    position: relative;
+    top: 10%;
+    left: 10%;
+    width: 80%;
+    font-size: 200%;
+}
+
+#followerbox
+{
+    padding-top: 0px;
+    height: 80%;
+    overflow-y: auto;
+    margin-top: 10%;
+}
+#followerbox::-webkit-scrollbar
+{
+    width: 10px;
+    border-radius: 30px;
+    background: rgb(104, 104, 104);
+}
+#followerbox::-webkit-scrollbar:horizontal
+{
+    display: none;
+}
+#followerbox::-webkit-scrollbar-thumb
+{
+    background: rgb(51, 51, 51);
+    border-radius: 30px;
+}
+
+#followerdiv
+{
+    width: 90%;
+    height: 50px;
+    position: relative;
+    top: 10%;
+    left: 10%;
+    margin-top: 20px;
+}
+
+#followerspan
+{
+    width: 30%;
+    height: 100%;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    padding-left: 10px;
+    border-radius: 10px;
+    text-decoration: none;
+}
+
+#followerspan:hover
+{
+    background: white;
+    #followerusername
+    {
+        color: black;
+    }
+    #followerpropic
+    {
+        border: 2px solid rgb(0, 0, 0);
+    }
+}
+
+#followerpropic
+{
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    border: 2px solid white;
+    object-fit: cover;
+}
+
+#followerusername
+{
+    text-decoration: none;
+    color: white;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    margin-left: 20px;
+    font-size: 120%;
+    height: 100%;
+    margin-top: 0;
+    margin-bottom: 0;
+    overflow: hidden;
+    margin-right: 20px;
+}

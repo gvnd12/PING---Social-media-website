@@ -1,0 +1,19 @@
+{% load static %}
+
+<link rel="stylesheet" href="{% static 'notifications.css' %}">
+
+<div id="notification">
+    {%if notifications%}
+    <ul>
+        <p id="notihead">New Notifications</p>
+        {%for n in notifications%}
+            <li id="notili">
+                {{n.content}}<br>
+                <span id="notidate" style="font-size: 80%; color: rgb(181, 181, 181);">{{n.created_at.date}}</span>
+            </li><br>
+        {%endfor%}
+    </ul>
+    {%else%}
+        <p id="nonew">No new notifications</p>
+    {%endif%}
+</div>
